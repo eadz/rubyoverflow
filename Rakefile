@@ -10,7 +10,12 @@ begin
     gem.email = "phasor@phsr.org"
     gem.homepage = "http://github.com/phsr/rubyoverflow"
     gem.authors = ["phsr"]
-    gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
+    gem.add_dependency 'open-uri', '>=0'
+    gem.add_dependency 'zlib', '>=0'
+    gem.add_dependency 'json', '>=0'
+    gem.add_dependency 'hashie', '>=0'
+    gem.add_development_dependency "shoulda", ">= 0"
+    gem.files.include FileList['lib/**/*.rb', 'bin/*', '[A-Z]*', 'test/**/*'].to_a
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
