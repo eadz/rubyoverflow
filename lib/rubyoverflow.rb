@@ -34,7 +34,6 @@ module Rubyoverflow
     
     def request(path, options)
       options.merge! :key => @api_key if @api_key
-      puts query_string(options)
       get (host_path + normalize(path)) + query_string(options)
     end
     

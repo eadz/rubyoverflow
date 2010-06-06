@@ -2,6 +2,23 @@
 
 rubyoverflow is a library for querying the Stack Overflow API
 
+== Configuration
+
+    Rubyoverflow::Client.config do |options|
+	  options.host = 'http://api.superuser.com' # optional, defaults to stackoverflow, queries super user
+	  options.api_key = 'api_key_here'  # optional, sets the api key
+	  options.version = '0.8' # optional, defaults to 0.8,sets the api version
+	end
+
+== Example
+
+    require 'rubyoverflow'
+    options = {:sort=>'name',:order=>'asc',:pagesize=>'5'}
+    tagsItem = Tags.retrieve(options) # gets the first 5 tags in alphabetical order by name
+    firstTag = tagsItem.tags.first # gets the first tag
+    puts firstTag.name # => tag's name
+    puts tag.count # => # of questions with tag
+
 == Note on Patches/Pull Requests
  
 * Fork the project.
