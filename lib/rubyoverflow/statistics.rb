@@ -1,38 +1,50 @@
 class Statistics < Base
   
-  attr_reader :total_questions
-  attr_reader :total_badges
-  attr_reader :total_unanswered
-  attr_reader :total_votes
-  attr_reader :total_comments
-  attr_reader :total_answers
-  attr_reader :total_users
-  attr_reader :questions_per_minute
-  attr_reader :answers_per_minute
-  attr_reader :badges_per_minute
-  attr_reader :display_name
-  attr_reader :api_version
-  
+  def total_questions
+    @dash.total_questions
+  end
+  def total_badges
+    @dash.total_badges
+  end
+  def total_unanswered
+    @dash.total_unanswered
+  end
+  def total_votes
+    @dash.total_votes
+  end
+  def total_comments
+    @dash.total_comments
+  end
+  def total_answers
+    @dash.total_answers
+  end
+  def total_users
+    @dash.total_users
+  end
+  def questions_per_minute
+    @dash.questions_per_minute
+  end
+  def answers_per_minute
+    @dash.answers_per_minute
+  end
+  def badges_per_minute
+    @dash.badges_per_minute
+  end
+  def display_name
+    @dash.total_users
+  end
+  def api_version
+    ApiVersion.new @dash.api_version
+  end
+
   def initialize(hash)
     @dash = StatisticsDash.new hash
-    @total_questions = @dash.total_questions
-    @total_badges = @dash.total_badges
-    @total_unanswered = @dash.total_unanswered
-    @total_votes = @dash.total_votes
-    @total_comments = @dash.total_comments
-    @total_answers = @dash.total_answers
-    @total_users = @dash.total_users
-    @questions_per_minute = @dash.questions_per_minute
-    @answers_per_minute = @dash.answers_per_minute
-    @badges_per_minute = @dash.badges_per_minute
-    @display_name = @dash.display_name
-    @api_version = ApiVersion.new @dash.api_version
   end
 
   
   class << self
     def retrieve
-      Statistics.new get('stats/')['statistics'].first
+      Statistics.new request('stats')['statistics'].first
     end
   end
   private

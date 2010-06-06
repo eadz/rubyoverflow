@@ -1,10 +1,12 @@
 class Base
-  @@domain = 'http://api.stackoverflow.com/0.8/'
+
   class << self
-    def get(url)
-      location =@@domain + url
-      stream = open(location) { |stream| Zlib::GzipReader.new(stream).read }
-      JSON.parse(stream)
+    def client 
+      @client ||= Rubyoverflow::Client.config
+    end
+    
+    def request(path, options = {})
+      client.request(path, options)
     end
   end
 end
