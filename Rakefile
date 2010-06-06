@@ -11,7 +11,6 @@ begin
     gem.homepage = "http://github.com/phsr/rubyoverflow"
     gem.authors = ["phsr"]
     gem.add_dependency 'open-uri', '>=0'
-    gem.add_dependency 'zlib', '>=0'
     gem.add_dependency 'json', '>=0'
     gem.add_dependency 'hashie', '>=0'
     gem.add_development_dependency "shoulda", ">= 0"
