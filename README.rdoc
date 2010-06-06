@@ -1,6 +1,6 @@
 = rubyoverflow
 
-Description goes here.
+rubyoverflow is a library for querying the Stack Overflow API
 
 == Note on Patches/Pull Requests
  
