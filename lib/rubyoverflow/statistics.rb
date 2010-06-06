@@ -31,7 +31,7 @@ class Statistics < Base
     @dash.badges_per_minute
   end
   def display_name
-    @dash.total_users
+    @dash.display_name
   end
   def api_version
     ApiVersion.new @dash.api_version
