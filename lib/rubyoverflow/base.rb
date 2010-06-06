@@ -1,4 +1,4 @@
-class Base< Hashie::Dash
+class Base
   @@domain = 'http://api.stackoverflow.com/0.8/'
   class << self
     def get(url)
