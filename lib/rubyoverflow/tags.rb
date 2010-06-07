@@ -1,16 +1,4 @@
-class Tags <Base
-  
-  def total
-    @dash.total
-  end
-  
-  def pagesize
-    @dash.pagesize
-  end
-  
-  def page
-    @dash.page
-  end
+class Tags < PagedBase
   
   def tags
     @tags
@@ -20,6 +8,8 @@ class Tags <Base
     @dash = TagsDash.new hash
     @tags = Array.new
     @dash.tags.each{ |tagHash| @tags.push(Tag.new tagHash)}
+    
+    super(@dash)
   end
   
   class << self
@@ -37,9 +27,7 @@ class Tags <Base
   @tags
 end
 
-class TagsDash <Hashie::Dash
-  property :total
+class TagsDash < PagedDash
   property :tags
-  property :pagesize
-  property :page
+  
 end

@@ -8,11 +8,19 @@ require 'zlib'
 require 'json'
 require 'hashie'
 require 'ostruct'
+
 require 'rubyoverflow/base'
-require 'rubyoverflow/statistics'
+require 'rubyoverflow/pagedBase'
+require 'rubyoverflow/pagedDash'
+
 require 'rubyoverflow/apiVersion'
-require 'rubyoverflow/tags'
+require 'rubyoverflow/badge'
+require 'rubyoverflow/badges'
+require 'rubyoverflow/badgeCounts'
+require 'rubyoverflow/statistics'
 require 'rubyoverflow/tag'
+require 'rubyoverflow/tags'
+require 'rubyoverflow/user'
 
 module Rubyoverflow
   class Client
