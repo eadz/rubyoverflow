@@ -16,6 +16,9 @@ require 'rubyoverflow/tag'
 
 module Rubyoverflow
   class Client
+    #Most of this class is borrowed from the Pilha (http://github.com/dlt/pilha) project because a) it works, b) a lot of this code would be the same regardless of implementation
+    # (especially the open => gzip code, query string, and normalize), and c) I'm new to ruby, so I'm going to skip pass some of the more 'boring' stuff and get to the 
+    # interesting parts.  I plan to re-examine this at a later point
     HOST = 'http://api.stackoverflow.com'
     VERSION = '0.8'
 
@@ -42,6 +45,8 @@ module Rubyoverflow
     end
     
     class << self
+      # this specifically works well, and I don't fully understand it, so I borrowed this from Pilha more than anything else
+      # If you want to explain why I only have to configure this once than forget about it, please do, because this stuff is currently over my head
       def config &block
         options = OpenStruct.new
         yield options if block_given?
