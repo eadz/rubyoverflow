@@ -1,0 +1,9 @@
+[0.2.3]
+Tags.retrieve_by_user(id,options) gets tags that the user has participated in
+
+[0.2.0-2]
+Added support for query string, api key, other stack overflow sites
+Added support for Tag retrieval
+
+[0.1]
+Initial Release, retrieves stack overflow statistics
