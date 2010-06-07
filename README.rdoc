@@ -5,10 +5,10 @@ rubyoverflow is a library for querying the Stack Overflow API
 == Configuration
 
     Rubyoverflow::Client.config do |options|
-	  options.host = 'http://api.superuser.com' # optional, defaults to stackoverflow, queries super user
-	  options.api_key = 'api_key_here'  # optional, sets the api key
-	  options.version = '0.8' # optional, defaults to 0.8,sets the api version
-	end
+      options.host = 'http://api.superuser.com' # optional, defaults to stackoverflow, queries super user
+      options.api_key = 'api_key_here'  # optional, sets the api key
+      options.version = '0.8' # optional, defaults to 0.8,sets the api version
+    end
 
 == Example
 

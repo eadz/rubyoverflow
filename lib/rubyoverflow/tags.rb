@@ -26,6 +26,10 @@ class Tags <Base
     def retrieve(options = {})
       Tags.new request('tags', options)
     end
+    
+    def retrieve_by_user(id, options = {})
+      Tags.new request('users/'+id.to_s+'/tags',options)
+    end
   end
   
   private
