@@ -23,6 +23,7 @@ require 'rubyoverflow/statistics'
 require 'rubyoverflow/tag'
 require 'rubyoverflow/tags'
 require 'rubyoverflow/user'
+require 'rubyoverflow/users'
 
 require 'rubyoverflow/answer'
 require 'rubyoverflow/answers'

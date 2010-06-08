@@ -58,7 +58,7 @@ class User
     @user_mentioned_url = @dash.user_mentioned_url
     @user_comments_url = @dash.user_comments_url
     @user_reputation_url = @dash.user_reputation_url
-    @badge_counts = BadgeCount.new @dash.badge_counts if @dash.badge_counts
+    @badge_counts = BadgeCounts.new @dash.badge_counts if @dash.badge_counts
     @timed_penalty_date = @dash.timed_penalty_date
   end
   
