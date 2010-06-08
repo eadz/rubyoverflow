@@ -6,7 +6,7 @@ class Badge
   attr_reader :award_count
   attr_reader :tag_based
   attr_reader :user
-  attr_reader :badge_recipients_url
+  attr_reader :badges_recipients_url
   
   def initialize(hash)
     @dash = BadgeDash.new hash
@@ -17,8 +17,8 @@ class Badge
     @description = @dash.description
     @award_count = @dash.award_count
     @tag_based = @dash.tag_based
-    @user = User.new @dash.user
-    @badge_recipients_url = @dash.badge_recipients_url
+    @user = User.new @dash.user if @dash.user
+    @badges_recipients_url = @dash.badges_recipients_url
   end
   private
   @dash
@@ -32,5 +32,5 @@ class BadgeDash < Hashie::Dash
   property :award_count
   property :tag_based
   property :user
-  property :badge_recipients_url
+  property :badges_recipients_url
 end

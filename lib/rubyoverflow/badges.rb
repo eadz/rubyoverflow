@@ -6,9 +6,15 @@ class Badges < PagedBase
     @dash = BadgesDash.new hash
     
     @badges = Array.new
-    @dash.badges.each{ |badgeHash| @badges.push(Tag.new badgeHash)}
+    @dash.badges.each{ |badgeHash| @badges.push(Badge.new badgeHash)}
     
     super(@dash)
+  end
+  
+  class <<self
+    def retrieve
+      Badges.new request('badges')
+    end
   end
   
   private
