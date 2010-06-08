@@ -1,3 +1,9 @@
+[0.3.0]
+Mapped User, Badge, BadgeCount, Badges
+Added PagedBase and PagedDash to reuse common properties of paged queries
+Added Badges.retrieve_all, retrieve_all_non_tag_based and retrieve_all_tag_based
+Refactored Tags to use new PagedBase and PagedDash classes
+
 [0.2.3]
 Tags.retrieve_by_user(id,options) gets tags that the user has participated in
 
