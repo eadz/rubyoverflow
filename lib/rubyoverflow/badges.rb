@@ -23,6 +23,11 @@ class Badges < PagedBase
     def retrieve_all_tag_based
       Badges.new request('badges/tags')
     end
+    
+    def retrieve_by_user(id)
+      Badges.new request('users/'+id.to_s+'/badges')
+    end
+    
   end
   
   private
