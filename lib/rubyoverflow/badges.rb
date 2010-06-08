@@ -12,8 +12,16 @@ class Badges < PagedBase
   end
   
   class <<self
-    def retrieve
+    def retrieve_all
       Badges.new request('badges')
+    end
+    
+    def retrieve_all_non_tag_based
+      Badges.new request('badges/name')
+    end
+    
+    def retrieve_all_tag_based
+      Badges.new request('badges/tags')
     end
   end
   
