@@ -1,3 +1,7 @@
+[0.3.1]
+Added Badges.retrieve_by_user(id)
+Fixed User class (added if to creation of BadgesCount member)
+
 [0.3.0]
 Mapped User, Badge, BadgeCount, Badges
 Added PagedBase and PagedDash to reuse common properties of paged queries
