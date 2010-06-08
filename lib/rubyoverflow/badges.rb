@@ -25,6 +25,11 @@ class Badges < PagedBase
     end
     
     def retrieve_by_user(id)
+      
+      if(id.kind_of?(Array))
+        id=id.join(';')
+      end
+      
       Badges.new request('users/'+id.to_s+'/badges')
     end
     

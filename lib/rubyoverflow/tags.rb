@@ -18,6 +18,11 @@ class Tags < PagedBase
     end
     
     def retrieve_by_user(id, options = {})
+      
+      if(id.kind_of?(Array))
+        id=id.join(';')
+      end
+      
       Tags.new request('users/'+id.to_s+'/tags',options)
     end
   end

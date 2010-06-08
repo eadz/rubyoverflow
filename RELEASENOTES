@@ -1,3 +1,6 @@
+[0.3.2]
+Update Badges.retrieve_by_user(id) and Tags.retrieve_by_user(id) to accept and array of ids
+
 [0.3.1]
 Added Badges.retrieve_by_user(id)
 Fixed User class (added if to creation of BadgesCount member)
