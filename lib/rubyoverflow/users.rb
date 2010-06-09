@@ -11,10 +11,17 @@ class Users < PagedBase
   end
   
   class << self
-    def retrieve(options = {})
+    
+    #Retieves all users
+    def retrieve_all(options = {})
       Users.new request('users/', options)
     end
     
+    #Retrieves users by id
+    #
+    #id can be an int, string, or an array of either
+    #
+    #Maps to '/users/{id}'
     def retrieve_by_id(id, options = {})
       if(id.kind_of?(Array))
         id=id.join(';')
@@ -23,6 +30,11 @@ class Users < PagedBase
       Users.new request('users/'+id.to_s, options)
     end
     
+    #Retrieves users by badge id
+    #
+    #id can be an int, string, or an array of either
+    #
+    #Maps to '/badges/{id}'
     def retrieve_by_badge(id, options = {})
       if(id.kind_of?(Array))
         id=id.join(';')

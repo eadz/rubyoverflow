@@ -32,3 +32,4 @@ rubyoverflow is a library for querying the Stack Overflow API
 == Copyright
 
 Copyright (c) 2010 phsr. See LICENSE for details.
+

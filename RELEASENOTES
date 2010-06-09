@@ -1,5 +1,5 @@
 [0.4.1]
-Added Usersand retrieve, retrieve_by_id and retrieve_by_badge
+Added Users and retrieve, retrieve_by_id and retrieve_by_badge
 
 [0.4.0]
 Added Comment and Answer wrappers
