@@ -13,8 +13,8 @@ rubyoverflow is a library for querying the Stack Overflow API
 == Example
 
     require 'rubyoverflow'
-    options = {:sort=>'name',:order=>'asc',:pagesize=>'5'}
-    tagsItem = Tags.retrieve(options) # gets the first 5 tags in alphabetical order by name
+    parameters = {:sort=>'name',:order=>'asc',:pagesize=>'5'}
+    tagsItem = Tags.retrieve(parameters) # gets the first 5 tags in alphabetical order by name
     firstTag = tagsItem.tags.first # gets the first tag
     puts firstTag.name # => tag's name
     puts tag.count # => # of questions with tag

@@ -1,3 +1,6 @@
+[0.5.0]
+Added Question and Questions with question retrieval methods
+
 [0.4.1]
 Added Users and retrieve, retrieve_by_id and retrieve_by_badge
 
@@ -19,7 +22,7 @@ Added Badges.retrieve_all, retrieve_all_non_tag_based and retrieve_all_tag_based
 Refactored Tags to use new PagedBase and PagedDash classes
 
 [0.2.3]
-Tags.retrieve_by_user(id,options) gets tags that the user has participated in
+Tags.retrieve_by_user(id,parameters) gets tags that the user has participated in
 
 [0.2.0-2]
 Added support for query string, api key, other stack overflow sites

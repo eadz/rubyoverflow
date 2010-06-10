@@ -28,6 +28,8 @@ require 'rubyoverflow/users'
 require 'rubyoverflow/answer'
 require 'rubyoverflow/answers'
 
+require 'rubyoverflow/question'
+require 'rubyoverflow/questions'
 
 module Rubyoverflow
   class Client
@@ -50,9 +52,9 @@ module Rubyoverflow
       JSON.parse(stream)
     end
     
-    def request(path, options)
-      options.merge! :key => @api_key if @api_key
-      get (host_path + normalize(path)) + query_string(options)
+    def request(path, parameters)
+      parameters.merge! :key => @api_key if @api_key
+      get (host_path + normalize(path)) + query_string(parameters)
     end
     
     def host_path
@@ -82,8 +84,8 @@ module Rubyoverflow
       path.end_with?('/') ? path : path+ '/'
     end
     
-    def query_string(options)
-     params = options.sort_by { |k, v| k.to_s }
+    def query_string(parameters)
+     params = parameters.sort_by { |k, v| k.to_s }
      pairs  = params.map { |key, value| "#{key}=#{value}" }
 
      '?' + pairs.join('&')

@@ -5,8 +5,16 @@ class Base
       @client ||= Rubyoverflow::Client.config
     end
     
-    def request(path, options = {})
-      client.request(path, options)
+    def request(path, parameters = {})
+      client.request(path, parameters)
+    end
+    
+    def convert_if_array(id)
+      if(id.kind_of?(Array))
+        id=id.join(';')
+      end
+      
+      id
     end
   end
 end

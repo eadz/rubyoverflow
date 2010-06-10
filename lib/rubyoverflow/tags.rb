@@ -13,17 +13,15 @@ class Tags < PagedBase
   end
   
   class << self
-    def retrieve(options = {})
-      Tags.new request('tags', options)
+    def retrieve(parameters = {})
+      Tags.new request('tags', parameters)
     end
     
-    def retrieve_by_user(id, options = {})
+    def retrieve_by_user(id, parameters = {})
       
-      if(id.kind_of?(Array))
-        id=id.join(';')
-      end
+      id = convert_if_array(id)
       
-      Tags.new request('users/'+id.to_s+'/tags',options)
+      Tags.new request('users/'+id.to_s+'/tags',parameters)
     end
   end
   

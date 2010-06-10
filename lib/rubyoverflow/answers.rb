@@ -11,28 +11,22 @@ class Answers < PagedBase
   end
   
   class << self
-    def retrieve_by_id(id, options = {})
-      if(id.kind_of?(Array))
-        id=id.join(';')
-      end
+    def retrieve_by_id(id, parameters = {})
+      id = convert_if_array(id)
       
-      Answers.new request('answers/'+id.to_s, options)
+      Answers.new request('answers/'+id.to_s, parameters)
     end
     
-    def retrieve_by_user(id, options={})
-      if(id.kind_of?(Array))
-        id=id.join(';')
-      end
+    def retrieve_by_user(id, parameters={})
+      id = convert_if_array(id)
       
-      Answers.new request('users/'+id.to_s+"/answers", options)
+      Answers.new request('users/'+id.to_s+"/answers", parameters)
     end
     
-    def retrieve_by_question(id, options={})
-      if(id.kind_of?(Array))
-        id=id.join(';')
-      end
+    def retrieve_by_question(id, parameters={})
+      id = convert_if_array(id)
       
-      Answers.new request('questions/'+id.to_s+"/answers", options)
+      Answers.new request('questions/'+id.to_s+"/answers", parameters)
     end
   end
   
