@@ -1,3 +1,6 @@
+[0.5.1]
+Removed @dash member from classes, as it is only used in initialize, shrinking memory usage of classes
+
 [0.5.0]
 Added Question and Questions with question retrieval methods
 
