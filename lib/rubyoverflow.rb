@@ -31,6 +31,10 @@ require 'rubyoverflow/answers'
 require 'rubyoverflow/question'
 require 'rubyoverflow/questions'
 
+require 'rubyoverflow/repChange'
+require 'rubyoverflow/repChanges'
+
+
 module Rubyoverflow
   class Client
     #Most of this class is borrowed from the Pilha (http://github.com/dlt/pilha) project because a) it works, b) a lot of this code would be the same regardless of implementation
