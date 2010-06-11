@@ -3,12 +3,12 @@ class Badges < PagedBase
   attr_reader :badges
   
   def initialize(hash)
-    @dash = BadgesDash.new hash
+    dash = BadgesDash.new hash
     
     @badges = Array.new
-    @dash.badges.each{ |badgeHash| @badges.push(Badge.new badgeHash)}
+    dash.badges.each{ |badgeHash| @badges.push(Badge.new badgeHash)}
     
-    super(@dash)
+    super(dash)
   end
   
   class <<self
@@ -46,8 +46,6 @@ class Badges < PagedBase
     
   end
   
-  private
-  @dash
 end
 
 class BadgesDash < PagedDash

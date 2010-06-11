@@ -1,15 +1,13 @@
 class Tags < PagedBase
   
-  def tags
-    @tags
-  end
+  attr_reader :tags
   
   def initialize(hash)
-    @dash = TagsDash.new hash
+    dash = TagsDash.new hash
     @tags = Array.new
-    @dash.tags.each{ |tagHash| @tags.push(Tag.new tagHash)}
+    dash.tags.each{ |tagHash| @tags.push(Tag.new tagHash)}
     
-    super(@dash)
+    super(dash)
   end
   
   class << self
@@ -24,10 +22,6 @@ class Tags < PagedBase
       Tags.new request('users/'+id.to_s+'/tags',parameters)
     end
   end
-  
-  private
-  @dash
-  @tags
 end
 
 class TagsDash < PagedDash

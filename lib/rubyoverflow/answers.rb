@@ -2,12 +2,12 @@ class Answers < PagedBase
   attr_reader :answers
   
   def initialize(hash)
-    @dash = AnswersDash.new hash
+    dash = AnswersDash.new hash
     
     @answers = Array.new
-    @dash.answers.each {|answerHash| @answers.push(Answer.new answerHash)}
+    dash.answers.each {|answerHash| @answers.push(Answer.new answerHash)}
     
-    super(@dash)
+    super(dash)
   end
   
   class << self
@@ -29,10 +29,6 @@ class Answers < PagedBase
       Answers.new request('questions/'+id.to_s+"/answers", parameters)
     end
   end
-  
-  private
-  @dash
-  
 end
 
 class AnswersDash < PagedDash

@@ -18,29 +18,27 @@ class Answer
   attr_reader :comments
   
   def initialize(hash)
-    @dash = AnswerDash.new hash
+    dash = AnswerDash.new hash
     
-    @answer_id = @dash.answer_id
-    @accepted = @dash.accepted
-    @answer_comments_url = @dash.answer_comments_url
-    @question_id = @dash.question_id
-    @locked_date = @dash.locked_date
-    @owner = User.new @dash.owner 
-    @creation_date = @dash.creation_date
-    @last_edit_date = @dash.last_edit_date
-    @last_activity_date = @dash.last_activity_date
-    @up_vote_count = @dash.up_vote_count
-    @down_vote_count = @dash.down_vote_count
-    @view_count = @dash.view_count
-    @score = @dash.score
-    @community_owned = @dash.community_owned
-    @title = @dash.title
-    @body = @dash.body
-    @comments = Comments.new @dash.comments if @dash.comments
+    @answer_id = dash.answer_id
+    @accepted = dash.accepted
+    @answer_comments_url = dash.answer_comments_url
+    @question_id = dash.question_id
+    @locked_date = dash.locked_date
+    @owner = User.new dash.owner 
+    @creation_date = dash.creation_date
+    @last_edit_date = dash.last_edit_date
+    @last_activity_date = dash.last_activity_date
+    @up_vote_count = dash.up_vote_count
+    @down_vote_count = dash.down_vote_count
+    @view_count = dash.view_count
+    @score = dash.score
+    @community_owned = dash.community_owned
+    @title = dash.title
+    @body = dash.body
+    @comments = Comments.new dash.comments if dash.comments
   end
-  
-  private
-  @dash
+
 end
 
 class AnswerDash < Hashie::Dash

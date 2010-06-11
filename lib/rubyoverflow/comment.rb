@@ -11,21 +11,18 @@ class Comment
   attr_reader :body
   
   def initialize(hash)
-    @dash = CommentDash.new hash
+    dash = CommentDash.new hash
     
-    @comment_id = @dash.comment_id
-    @creation_date = @dash.creation_date
-    @owner = User.new @dash.owner
-    @reply_to_user = User.new @dash.reply_to_user if @dash.reply_to_user
-    @post_id = @dash.post_id
-    @post_type = @dash.post_type
-    @score = @dash.score
-    @edit_count = @dash.edit_count
-    @body = @dash.body
+    @comment_id = dash.comment_id
+    @creation_date = dash.creation_date
+    @owner = User.new dash.owner
+    @reply_to_user = User.new dash.reply_to_user if dash.reply_to_user
+    @post_id = dash.post_id
+    @post_type = dash.post_type
+    @score = dash.score
+    @edit_count = dash.edit_count
+    @body = dash.body
   end
-  
-  private
-  @dash
   
 end
 

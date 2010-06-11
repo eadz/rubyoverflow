@@ -2,11 +2,11 @@ class Questions < PagedBase
   attr_reader :questions
   
   def initialize(hash)
-    @dash = QuestionsDash.new hash
+    dash = QuestionsDash.new hash
     
-    @questions = @dash.questions
+    @questions = dash.questions
     
-    super(@dash)
+    super(dash)
   end
   
   class << self
@@ -71,8 +71,7 @@ class Questions < PagedBase
     
   end
   
-  private
-  @dash
+
 end
 
 class QuestionsDash < PagedDash

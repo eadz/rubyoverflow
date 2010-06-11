@@ -6,7 +6,7 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "rubyoverflow"
     gem.summary = %Q{rubyoverflow is a library for querying the Stack Overflow API}
-    gem.description = %Q{}
+    gem.description = %Q{rubyoverflow is a library for querying the Stack Overflow API}
     gem.email = "phasor@phsr.org"
     gem.homepage = "http://github.com/phsr/rubyoverflow"
     gem.authors = ["phsr"]
@@ -44,6 +44,8 @@ end
 task :test => :check_dependencies
 
 task :default => :test
+
+task :doc => :rdoc
 
 require 'rake/rdoctask'
 Rake::RDocTask.new do |rdoc|

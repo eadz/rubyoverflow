@@ -9,19 +9,17 @@ class Badge
   attr_reader :badges_recipients_url
   
   def initialize(hash)
-    @dash = BadgeDash.new hash
+    dash = BadgeDash.new hash
     
-    @badge_id = @dash.badge_id
-    @rank = @dash.rank
-    @name = @dash.name
-    @description = @dash.description
-    @award_count = @dash.award_count
-    @tag_based = @dash.tag_based
-    @user = User.new @dash.user if @dash.user
-    @badges_recipients_url = @dash.badges_recipients_url
+    @badge_id = dash.badge_id
+    @rank = dash.rank
+    @name = dash.name
+    @description = dash.description
+    @award_count = dash.award_count
+    @tag_based = dash.tag_based
+    @user = User.new dash.user if dash.user
+    @badges_recipients_url = dash.badges_recipients_url
   end
-  private
-  @dash
 end
 
 class BadgeDash < Hashie::Dash

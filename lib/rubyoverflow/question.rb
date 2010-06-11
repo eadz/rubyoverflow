@@ -27,44 +27,43 @@ class Question
   attr_reader :comments
   
   def initialize(hash)
-    @dash = QuestionDash.new hash
+    dash = QuestionDash.new hash
     
     @tags = Array.new
     @comments = Array.new
     @answers = Array.new
     
-    @dash.tags.each {|tag| @tags.push(tag)}
-    @dash.comments.each {|commentHash| @comment.push(Comment.new commentHash)}
-    @dash.answers.each {|answerHash| @comment.push(Answer.new answerHash)}
+    dash.tags.each {|tag| @tags.push(tag)}
+    dash.comments.each {|commentHash| @comment.push(Comment.new commentHash)}
+    dash.answers.each {|answerHash| @comment.push(Answer.new answerHash)}
     
-    @answer_count = @dash.answer_count
-    @accepted_answer_id = @dash.accepted_answer_id
-    @favorite_count = @dash.favorite_count
-    @bounty_closes_date = @dash.bounty_closes_date
-    @bounty_amount = @dash.bounty_amount
-    @closed_date = @dash.closed_date
-    @closed_reason = @dash.closed_reason
-    @question_timeline_url = @dash.question_timeline_url
-    @question_comments_url = @dash.question_comments_url
-    @question_answers_url = @dash.question_answers_url
-    @question_id = @dash.question_id
-    @locked_date = @dash.locked_date
-    @owner = User.new @dash.owner
-    @creation_date = @dash.creation_date
-    @last_edit_date = @dash.last_edit_date
-    @last_activity_date = @dash.last_activity_date
-    @up_vote_count = @dash.up_vote_count
-    @down_vote_count = @dash.down_vote_count
-    @view_count = @dash.view_count
-    @score = @dash.score
-    @community_owned = @dash.community_owned
-    @title = @dash.title
-    @body = @dash.body
+    @answer_count = dash.answer_count
+    @accepted_answer_id = dash.accepted_answer_id
+    @favorite_count = dash.favorite_count
+    @bounty_closes_date = dash.bounty_closes_date
+    @bounty_amount = dash.bounty_amount
+    @closed_date = dash.closed_date
+    @closed_reason = dash.closed_reason
+    @question_timeline_url = dash.question_timeline_url
+    @question_comments_url = dash.question_comments_url
+    @question_answers_url = dash.question_answers_url
+    @question_id = dash.question_id
+    @locked_date = dash.locked_date
+    @owner = User.new dash.owner
+    @creation_date = dash.creation_date
+    @last_edit_date = dash.last_edit_date
+    @last_activity_date = dash.last_activity_date
+    @up_vote_count = dash.up_vote_count
+    @down_vote_count = dash.down_vote_count
+    @view_count = dash.view_count
+    @score = dash.score
+    @community_owned = dash.community_owned
+    @title = dash.title
+    @body = dash.body
     
   end
   
-  private
-  @dash
+
 end
 
 class QuestionDash < Hashie::Dash

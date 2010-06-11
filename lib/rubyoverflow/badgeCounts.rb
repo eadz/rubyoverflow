@@ -5,14 +5,12 @@ class BadgeCounts
   attr_reader :bronze
   
   def initialize(hash)
-    @dash = BadgeCountDash.new hash
-    @gold = @dash.gold
-    @silver = @dash.silver
-    @bronze = @dash.bronze
+    dash = BadgeCountDash.new hash
+    @gold = dash.gold
+    @silver = dash.silver
+    @bronze = dash.bronze
   end
   
-  private
-  @dash
 end
 
 class BadgeCountDash < Hashie::Dash

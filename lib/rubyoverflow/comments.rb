@@ -3,12 +3,12 @@ class Comments < PagedBase
   attr_reader :comments
   
   def initialize(hash)
-    @dash = CommentsDash.new hash
+    dash = CommentsDash.new hash
     
     @comments = Array.new
-    @dash.comments.each{ |commentHash| @comments.push(Comment.new commentHash)}
+    dash.comments.each{ |commentHash| @comments.push(Comment.new commentHash)}
     
-    super(@dash)
+    super(dash)
   end
   
   class << self
@@ -54,9 +54,6 @@ class Comments < PagedBase
       Comments.new request('users/'+id.to_s+"/mentioned", parameters)
     end
   end
-  
-  private
-  @dash
   
 end
 

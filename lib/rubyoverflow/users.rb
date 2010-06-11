@@ -3,11 +3,11 @@ class Users < PagedBase
   attr_reader :users
   
   def initialize(hash)
-    @dash = UsersDash.new hash
+    dash = UsersDash.new hash
     
     @users = Array.new
     
-    @dash.users.each{|userHash| @users.push(User.new userHash)}
+    dash.users.each{|userHash| @users.push(User.new userHash)}
   end
   
   class << self
@@ -40,8 +40,7 @@ class Users < PagedBase
     end
   end
   
-  private
-  @dash
+
 end
 
 class UsersDash < PagedDash
