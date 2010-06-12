@@ -1,4 +1,4 @@
-[next release]
+[0.8.0]
 Added Revision and Revisions, along with revision retrieval methods
 Added Questions.search which maps to '/search'
 Added Errors
