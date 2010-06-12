@@ -9,6 +9,12 @@ class PostTimelineEvents < PagedBase
   end
   
   class << self
+    
+    #Retrieve a set of PostTimelineEvent for a set of question(s) by their id(s)
+    #
+    #id can be an int, string, or an array of ints or strings
+    #
+    #Maps to 'questions/{id}/timeline'
     def retrieve_by_question(id, parameters = {})
       id = convert_if_array(id)
       
