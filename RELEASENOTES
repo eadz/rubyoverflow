@@ -1,3 +1,6 @@
+[next release]
+Added Revision and Revisions, along with revision retrieval methods
+
 [0.6.0]
 Added RepChange and RepChanges with RepChanges.retrieve_by_user
 Added UserTimeLineEvent and UserTimeLineEvents with UserTimeLineEvent.retrieve_by_user
