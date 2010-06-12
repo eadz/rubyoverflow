@@ -37,6 +37,8 @@ require 'rubyoverflow/repChanges'
 require 'rubyoverflow/userTimelineEvent'
 require 'rubyoverflow/userTimelineEvents'
 
+require 'rubyoverflow/postTimelineEvent'
+require 'rubyoverflow/postTimelineEvents'
 
 module Rubyoverflow
   class Client

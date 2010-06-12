@@ -1,6 +1,7 @@
 [0.6.0]
 Added RepChange and RepChanges with RepChanges.retrieve_by_user
 Added UserTimeLineEvent and UserTimeLineEvents with UserTimeLineEvent.retrieve_by_user
+Added PostTimeLineEvent and PostTimeLineEvents with PostTimeLineEvent.retrieve_by_question
 
 [0.5.1]
 Removed @dash member from classes, as it is only used in initialize, shrinking memory usage of classes
