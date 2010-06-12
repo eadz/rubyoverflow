@@ -34,6 +34,9 @@ require 'rubyoverflow/questions'
 require 'rubyoverflow/repChange'
 require 'rubyoverflow/repChanges'
 
+require 'rubyoverflow/userTimelineEvent'
+require 'rubyoverflow/userTimelineEvents'
+
 
 module Rubyoverflow
   class Client
