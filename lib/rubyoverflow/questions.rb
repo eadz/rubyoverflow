@@ -66,7 +66,16 @@ class Questions < PagedBase
     def retrieve_by_user(id, parameters = {})
       id = convert_if_array(id)
       
-      Questions.new request('users/'+id.to_s+'/questions')
+      Questions.new request('users/'+id.to_s+'/questions', parameters)
+    end
+    
+    #Searches questions. One of intitle, tagged, or nottagged must be set.
+    #
+    #Example: Questions.search({:tagged=>'c%23',:nottagged=>'sql;asp.net'})
+    #
+    #Maps to '/search'
+    def search(parameters = {})
+      Questions.new request('search', parameters)
     end
     
   end
