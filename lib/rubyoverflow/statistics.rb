@@ -13,7 +13,7 @@ class Statistics < Base
   attr_reader :display_name
   attr_reader :api_version
 
-  def initialize(hash)
+  def initialize(hash, request_path = '')
     dash = StatisticsDash.new hash
     
     @total_questions = dash.total_questions
@@ -32,8 +32,13 @@ class Statistics < Base
 
   
   class << self
+    
+    #Retrieves the stats for the domain
+    #
+    #Maps to 'stats'
     def retrieve
-      Statistics.new request('stats')['statistics'].first
+      hash, url = request('stats')
+      Statistics.new hash['statistics'].first, url
     end
   end
 

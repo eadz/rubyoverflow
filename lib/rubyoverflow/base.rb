@@ -1,5 +1,9 @@
 class Base
 
+  def request(path, parameters = {})
+    Base.request(path, parameters)
+  end
+  
   class << self
     def client 
       @client ||= Rubyoverflow::Client.config

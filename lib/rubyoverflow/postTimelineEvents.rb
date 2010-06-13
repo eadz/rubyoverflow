@@ -1,8 +1,8 @@
 class PostTimelineEvents < PagedBase
   attr_reader :post_timelines
-  def initialize(hash)
+  def initialize(hash, request_path = '')
     dash = PostTimelineEventsDash.new hash
-    super(dash)
+    super(dash, request_path)
     
     @post_timelines = Array.new
     dash.post_timelines.each {|postTimeHash| @post_timelines.push(PostTimelineEvent.new postTimeHash)}
@@ -18,7 +18,8 @@ class PostTimelineEvents < PagedBase
     def retrieve_by_question(id, parameters = {})
       id = convert_if_array(id)
       
-      PostTimelineEvents.new request('questions/' + id.to_s + '/timeline', parameters)
+      hash, url = request('questions/' + id.to_s + '/timeline', parameters)
+      PostTimelineEvents.new hash, url
     end
   end
   

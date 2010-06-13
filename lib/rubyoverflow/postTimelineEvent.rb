@@ -11,7 +11,7 @@ class PostTimelineEvent
   attr_reader :post_url
   attr_reader :post_comment_url
   
-  def initialize(hash)
+  def initialize(hash, request_path = '')
     dash = PostTimelineEventDash.new hash
     
     @timeline_type = dash.timeline_type

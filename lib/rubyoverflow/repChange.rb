@@ -7,7 +7,7 @@ class RepChange
   attr_reader :negative_rep
   attr_reader :on_date
   
-  def initialize(hash)
+  def initialize(hash, request_path = '')
     dash = RepChangeDash.new hash
     
     @user_id = dash.user_id

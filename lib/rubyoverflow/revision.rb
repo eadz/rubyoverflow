@@ -16,7 +16,7 @@ class Revision
   attr_reader :user
   attr_reader :post_id
   
-  def initialize(hash)
+  def initialize(hash, request_path = '')
     dash = RevisionDash.new hash
     
     @body = dash.body

@@ -17,7 +17,7 @@ class Answer
   attr_reader :body
   attr_reader :comments
   
-  def initialize(hash)
+  def initialize(hash, request_path = '')
     dash = AnswerDash.new hash
     
     @answer_id = dash.answer_id

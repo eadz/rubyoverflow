@@ -10,7 +10,7 @@ class Comment
   attr_reader :edit_count
   attr_reader :body
   
-  def initialize(hash)
+  def initialize(hash, request_path = '')
     dash = CommentDash.new hash
     
     @comment_id = dash.comment_id

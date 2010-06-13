@@ -1,4 +1,4 @@
-class User
+class User < Base
   
   attr_reader :user_id
   attr_reader :user_type
@@ -29,7 +29,7 @@ class User
   attr_reader :badge_counts
   attr_reader :timed_penalty_date
   
-  def initialize(hash)
+  def initialize(hash, request_path = '')
     dash = UserDash.new hash
     
     @user_id = dash.user_id
@@ -60,6 +60,12 @@ class User
     @user_reputation_url = dash.user_reputation_url
     @badge_counts = BadgeCounts.new dash.badge_counts if dash.badge_counts
     @timed_penalty_date = dash.timed_penalty_date
+  end
+  
+  #Gets the questions for a user
+  def get_questions(parameters = {})
+    hash,url =request(@user_questions_url, parameters)
+    Questions.new hash, url
   end
   
 end

@@ -9,7 +9,7 @@ class UserTimelineEvent
   attr_reader :description
   attr_reader :detail
   
-  def initialize(hash)
+  def initialize(hash, request_path = '')
     dash = UserTimelineEventDash.new hash
     
     @user_id = dash.user_id

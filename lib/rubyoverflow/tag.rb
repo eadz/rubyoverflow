@@ -5,7 +5,7 @@ class Tag
   attr_reader :fulfills_required
   attr_reader :user_id
   
-  def initialize(hash)
+  def initialize(hash, request_path = '')
     dash = TagDash.new hash
     @name = dash.name
     @count = dash.count

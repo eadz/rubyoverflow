@@ -4,8 +4,8 @@ class BadgeCounts
   attr_reader :silver
   attr_reader :bronze
   
-  def initialize(hash)
-    dash = BadgeCountDash.new hash
+  def initialize(hash, request_path = '')
+    dash = BadgeCountsDash.new hash
     @gold = dash.gold
     @silver = dash.silver
     @bronze = dash.bronze
@@ -13,7 +13,7 @@ class BadgeCounts
   
 end
 
-class BadgeCountDash < Hashie::Dash
+class BadgeCountsDash < Hashie::Dash
   property :gold
   property :silver
   property :bronze

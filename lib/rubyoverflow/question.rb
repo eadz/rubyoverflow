@@ -26,7 +26,7 @@ class Question
   attr_reader :body
   attr_reader :comments
   
-  def initialize(hash)
+  def initialize(hash, request_path = '')
     dash = QuestionDash.new hash
     
     @tags = Array.new

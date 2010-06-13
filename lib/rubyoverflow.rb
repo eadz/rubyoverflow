@@ -63,7 +63,7 @@ module Rubyoverflow
     
     def get(url) 
       stream = open(url) { |stream| Zlib::GzipReader.new(stream).read }
-      JSON.parse(stream)
+      return JSON.parse(stream), url
     end
     
     def request(path, parameters)
@@ -99,10 +99,14 @@ module Rubyoverflow
     end
     
     def query_string(parameters)
-     params = parameters.sort_by { |k, v| k.to_s }
-     pairs  = params.map { |key, value| "#{key}=#{value}" }
+      if(!parameters.empty?)
+        params = parameters.sort_by { |k, v| k.to_s }
+        pairs  = params.map { |key, value| "#{key}=#{value}" }
 
-     '?' + pairs.join('&')
+        '?' + pairs.join('&')
+      else
+        ''
+      end
    end
   end
 end

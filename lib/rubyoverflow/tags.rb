@@ -2,24 +2,32 @@ class Tags < PagedBase
   
   attr_reader :tags
   
-  def initialize(hash)
+  def initialize(hash, request_path = '')
     dash = TagsDash.new hash
     @tags = Array.new
     dash.tags.each{ |tagHash| @tags.push(Tag.new tagHash)}
     
-    super(dash)
+    super(dash, request_path)
   end
   
   class << self
-    def retrieve(parameters = {})
-      Tags.new request('tags', parameters)
+    #Retrieves all of the tags
+    #
+    #Maps to '/tags/
+    def retrieve_all(parameters = {})
+      hash, url = request('tags', parameters)
+      Tags.new hash, url
     end
     
+    #Retieves all of the tags assign to a set of users by their ids
+    #
+    #id can be an int, string, or an array of ints or strings
+    #
+    #Maps to 'users/{id}/tags'
     def retrieve_by_user(id, parameters = {})
-      
       id = convert_if_array(id)
-      
-      Tags.new request('users/'+id.to_s+'/tags',parameters)
+      hash, url = request('users/'+id.to_s+'/tags',parameters)
+      Tags.new hash, url
     end
   end
 end

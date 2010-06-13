@@ -1,8 +1,8 @@
 class UserTimelineEvents < PagedBase
   attr_reader :user_timelines
-  def initialize(hash)
+  def initialize(hash, request_path = '')
     dash = UserTimelineEventsDash.new hash
-    super(dash)
+    super(dash, request_path)
     @user_timelines = Array.new
     dash.user_timelines.each{|timelineHash| @user_timelines.push(UserTimelineEvent.new timelineHash)}
   end
@@ -15,8 +15,8 @@ class UserTimelineEvents < PagedBase
     #Maps to 'users/{id}/timeline
     def retrieve_by_user(id, parameters = {})
       id = convert_if_array(id)
-      
-      UserTimelineEvents.new request('users/'+id.to_s+'/timeline',parameters)
+      hash, url = request('users/' + id.to_s + '/timeline',parameters)
+      UserTimelineEvents.new hash, url
     end
     
   end

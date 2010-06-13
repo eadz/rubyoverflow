@@ -2,13 +2,13 @@ class Badges < PagedBase
   
   attr_reader :badges
   
-  def initialize(hash)
+  def initialize(hash, request_path = '')
     dash = BadgesDash.new hash
     
     @badges = Array.new
     dash.badges.each{ |badgeHash| @badges.push(Badge.new badgeHash)}
     
-    super(dash)
+    super(dash, request_path)
   end
   
   class <<self
@@ -16,21 +16,24 @@ class Badges < PagedBase
     #
     #Maps to '/badges'
     def retrieve_all
-      Badges.new request('badges')
+      hash, url = request('badges')
+      Badges.new hash, url
     end
     
     #Retrieves all standard, non-tag-based badges in alphabetical order
     #
     #Maps to '/badges/name'
     def retrieve_all_non_tag_based
-      Badges.new request('badges/name')
+      hash, url = request('badges/name')
+      Badges.new hash, url
     end
     
     #Retrieves all tag-based badges in alphabetical order
     #
     #Maps to '/badges/tags'
     def retrieve_all_tag_based
-      Badges.new request('badges/tags')
+      hash, url = request('badges/tags')
+      Badges.new hash, url
     end
     
     #Retrieves all badges that have been awarded to a set of users by their id(s)
@@ -41,7 +44,8 @@ class Badges < PagedBase
     def retrieve_by_user(id)
       id = convert_if_array(id)
       
-      Badges.new request('users/'+id.to_s+'/badges')
+      hash, url = request('users/'+id.to_s+'/badges')
+      Badges.new hash, url
     end
     
   end

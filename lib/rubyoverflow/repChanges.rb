@@ -2,9 +2,9 @@ class RepChanges < PagedBase
   
   attr_reader :rep_changes
   
-  def initialize(hash)
+  def initialize(hash, request_path = '')
     dash = RepChangesDash.new hash
-    super(dash)
+    super(dash, request_path)
     
     @rep_changes = Array.new
     dash.rep_changes.each{|repHash| @rep_changes.push(RepChange.new repHash)}
@@ -19,8 +19,8 @@ class RepChanges < PagedBase
     #Maps to '/users{id}/reputation'
     def retrieve_by_user(id, parameters={})
       id = convert_if_array(id)
-      
-      RepChanges.new request('/users/' + id.to_s + '/reputation', parameters)
+      hash, url = request('/users/' + id.to_s + '/reputation', parameters)
+      RepChanges.new hash, url
     end
     
   end

@@ -1,12 +1,12 @@
 class Questions < PagedBase
   attr_reader :questions
   
-  def initialize(hash)
+  def initialize(hash, request_path = '')
     dash = QuestionsDash.new hash
     
     @questions = dash.questions
     
-    super(dash)
+    super(dash,request_path)
   end
   
   class << self
@@ -15,7 +15,8 @@ class Questions < PagedBase
     #
     #Maps to '/questions'
     def retrieve_all(parameters = {})
-      Questions.new request('questions',parameters)
+      hash, url = request('questions',parameters)
+      Questions.new hash, url
     end
     
     #Retrieves a set of questions by their id(s)
@@ -26,7 +27,8 @@ class Questions < PagedBase
     def retrieve_by_id(id, parameters = {})
       id = convert_if_array(id)
       
-      Questions.new request('questions/' + id.to_s, parameters )
+      hash, url = request('questions/' + id.to_s, parameters)
+      Questions.new hash, url
     end
     
     #Retrieves a set of questions by their tag(s)
@@ -37,14 +39,16 @@ class Questions < PagedBase
     def retrieve_by_tag(tags, parameters = {})
       tags = convert_if_array(tags)
       
-      Questions.new request('questions/tagged/' + tags.to_s, parameters )
+      hash, url = request('questions/tagged/' + tags.to_s, parameters)
+      Questions.new hash, url
     end
     
     #Retieves a set of unanswered questions using the parameters provided
     #
     #Maps to '/questions/unanswered'
     def retrieve_unanswered(parameters = {})
-      Questions.new request('questions/unanswered', parameters)
+      hash, url = request('questions/unanswered', parameters)
+      Questions.new hash, url
     end
     
     #Retrieves a set of favorite questions for user(s) by the users' id(s)
@@ -55,7 +59,8 @@ class Questions < PagedBase
     def retrieve_favorites(user_id, parameters = {})
       user_id = convert_if_array(user_id)
       
-      Questions.new request('users/'+user_id.to_s+'/favorites', parameters)
+      hash, url = request('users/'+user_id.to_s+'/favorites', parameters)
+      Questions.new hash, url
     end
     
     #Retrieve question summary for user(s) by their id(s)
@@ -66,7 +71,8 @@ class Questions < PagedBase
     def retrieve_by_user(id, parameters = {})
       id = convert_if_array(id)
       
-      Questions.new request('users/'+id.to_s+'/questions', parameters)
+      hash, url = request('users/'+id.to_s+'/questions', parameters)
+      Questions.new hash, url
     end
     
     #Searches questions. One of intitle, tagged, or nottagged must be set.
@@ -75,7 +81,8 @@ class Questions < PagedBase
     #
     #Maps to '/search'
     def search(parameters = {})
-      Questions.new request('search', parameters)
+      hash, url = request('search', parameters)
+      Questions.new hash, url
     end
     
   end

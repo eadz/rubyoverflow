@@ -8,7 +8,7 @@ class Badge
   attr_reader :user
   attr_reader :badges_recipients_url
   
-  def initialize(hash)
+  def initialize(hash, request_path = '')
     dash = BadgeDash.new hash
     
     @badge_id = dash.badge_id

@@ -1,9 +1,9 @@
 class Revisions < PagedBase
   attr_reader :revisions
   
-  def initialize(hash)
+  def initialize(hash, request_path = '')
     dash = RevisionsDash.new hash
-    super(dash)
+    super(dash, request_path)
     
     @revisions = Array.new
     dash.revisions.each{|revisionHash| @revisions.push(Revision.new revisionHash)}
@@ -18,8 +18,8 @@ class Revisions < PagedBase
     #Maps to 'revisions/{id}'
     def retrieve_by_post(id, parameters = {})
       id = convert_if_array(id)
-      
-      Revisions.new request('/revisions/'+id.to_s, parameters)
+      hash, url = request('/revisions/'+id.to_s, parameters)
+      Revisions.new hash, url
     end
     
     #Retrieves a specific post revision by post id and revision guid
@@ -31,8 +31,8 @@ class Revisions < PagedBase
     #Maps to 'revisions/{id}'
     def retrieve_post_revision(id, revisionguid, parameters = {})
       id = convert_if_array(id)
-      
-      Revisions.new request('/revisions/'+id.to_s + '/' + revisionguid, parameters)
+      hash, url = request('/revisions/'+id.to_s + '/' + revisionguid, parameters)
+      Revisions.new hash, url
     end
     
   end
