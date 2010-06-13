@@ -1,20 +1,22 @@
-class BadgeCounts
+module Rubyoverflow
+  class BadgeCounts
   
-  attr_reader :gold
-  attr_reader :silver
-  attr_reader :bronze
+    attr_reader :gold
+    attr_reader :silver
+    attr_reader :bronze
   
-  def initialize(hash)
-    dash = BadgeCountDash.new hash
-    @gold = dash.gold
-    @silver = dash.silver
-    @bronze = dash.bronze
+    def initialize(hash, request_path = '')
+      dash = BadgeCountsDash.new hash
+      @gold = dash.gold
+      @silver = dash.silver
+      @bronze = dash.bronze
+    end
+  
   end
-  
-end
 
-class BadgeCountDash < Hashie::Dash
-  property :gold
-  property :silver
-  property :bronze
+  class BadgeCountsDash < Hashie::Dash
+    property :gold
+    property :silver
+    property :bronze
+  end
 end
