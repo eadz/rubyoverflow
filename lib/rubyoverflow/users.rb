@@ -10,6 +10,12 @@ module Rubyoverflow
     
       dash.users.each{|userHash| @users.push(User.new userHash)}
     end
+    
+    #Retrieves the next set of users using the same parameters used to retrieve the current set
+    def get_next_set
+      hash,url = perform_next_page_request
+      Users.new hash,url
+    end
   
     class << self
     

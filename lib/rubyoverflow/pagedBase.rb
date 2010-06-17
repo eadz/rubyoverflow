@@ -15,12 +15,17 @@ module Rubyoverflow
     
     def next_page_parameters()
       temp = @query_parameters
-      if temp['page'].respond_to?(:to_int)
-        temp['page'] = temp['page'].to_i +1
+      if @page.respond_to?(:to_int)
+        temp['page'] = @page.to_i + 1
       else
         temp["page"] = 2
       end
       return temp
     end
+    
+    def perform_next_page_request()
+      request(@request_path,next_page_parameters)
+    end
+    
   end
 end

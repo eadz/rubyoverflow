@@ -15,6 +15,7 @@ module Rubyoverflow
         }
         queryHash
       end
+      url.sub!(Base.client.host_path,'')
       return url,queryHash
     end
     

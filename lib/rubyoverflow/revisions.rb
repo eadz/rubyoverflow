@@ -9,6 +9,12 @@ module Rubyoverflow
       @revisions = Array.new
       dash.revisions.each{|revisionHash| @revisions.push(Revision.new revisionHash)}
     end
+    
+    #Retrieves the next set of revisions using the same parameters used to retrieve the current set
+    def get_next_set
+      hash,url = perform_next_page_request
+      Revisions.new hash,url
+    end
   
     class << self
     

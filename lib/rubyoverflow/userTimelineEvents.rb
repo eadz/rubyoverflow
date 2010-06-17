@@ -7,6 +7,12 @@ module Rubyoverflow
       @user_timelines = Array.new
       dash.user_timelines.each{|timelineHash| @user_timelines.push(UserTimelineEvent.new timelineHash)}
     end
+    
+    #Retrieves the next set of UserTimelineEvents using the same parameters used to retrieve the current set
+    def get_next_set
+      hash,url = perform_next_page_request
+      UserTimelineEvents.new hash,url
+    end
   
     class << self
       #Retrieves a set of timeline events for a set of user(s) by their id(s)
