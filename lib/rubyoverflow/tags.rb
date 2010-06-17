@@ -10,6 +10,12 @@ module Rubyoverflow
     
       super(dash, request_path)
     end
+    
+    #Retrieves the next set of tags using the same parameters used to retrieve the current set
+    def get_next_set
+      hash,url = perform_next_page_request
+      Tags.new hash,url
+    end
   
     class << self
       #Retrieves all of the tags

@@ -10,7 +10,13 @@ module Rubyoverflow
       @rep_changes = Array.new
       dash.rep_changes.each{|repHash| @rep_changes.push(RepChange.new repHash)}
     end
-  
+    
+    #Retrieves the next set of RepChanges using the same parameters used to retrieve the current set
+    def get_next_set
+      hash,url = perform_next_page_request
+      RepChanges.new hash,url
+    end
+    
     class << self
     
       #Retrieves all the rep_changes for a set of user(s) by their id(s)
