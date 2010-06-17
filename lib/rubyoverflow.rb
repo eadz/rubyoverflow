@@ -99,7 +99,7 @@ module Rubyoverflow
     end
     
     def query_string(parameters)
-      if(!parameters.empty?)
+      if !parameters.empty?
         params = parameters.sort_by { |k, v| k.to_s }
         pairs  = params.map { |key, value| "#{key}=#{value}" }
 
