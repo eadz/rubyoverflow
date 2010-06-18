@@ -63,10 +63,30 @@ module Rubyoverflow
       @body = dash.body
     end
     
-    #Gets the comments made on the answer
+    #Gets the comments made on the question
     def get_comments(parameters = {})
-      if @answer_comments_url
-        hash,url =request(@answer_comments_url, parameters)
+      if @question_comments_url
+        hash,url =request(@question_comments_url, parameters)
+        Comments.new hash, url
+      else
+        nil
+      end
+    end
+    
+    #Gets the answers posted to the question
+    def get_answers(parameters = {})
+      if @question_answers_url
+        hash,url =request(@question_answers_url, parameters)
+        Comments.new hash, url
+      else
+        nil
+      end
+    end
+    
+    #Gets the timeline for the question
+    def get_timeline(parameters = {})
+      if @question_timeline_url
+        hash,url =request(@question_timeline_url, parameters)
         Comments.new hash, url
       else
         nil

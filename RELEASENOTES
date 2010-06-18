@@ -3,6 +3,7 @@ Added Badge.get_recipients
 Added Answer.get_comments
 Added Users.get_moderators
 Added PostTimelineEvent.get_post, PostTimelineEvent.get_post_comment, and PostTimelineEvent.get_revision
+Added Question.get_timeline, Question.get_answers, Question.get_comments
 
 [0.8.2]
 Added get_next_set to paged results, retrieve the next set using the same parameters that were used to retrieve the initial set
