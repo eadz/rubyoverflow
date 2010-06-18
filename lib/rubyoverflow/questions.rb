@@ -5,7 +5,8 @@ module Rubyoverflow
     def initialize(hash, request_path = '')
       dash = QuestionsDash.new hash
     
-      @questions = dash.questions
+      @questions = Array.new
+      dash.questions.each {|questionHash| @questions.push (Question.new questionHash)}
     
       super(dash,request_path)
     end
