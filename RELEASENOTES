@@ -1,3 +1,10 @@
+[0.8.2]
+Added get_next_set to paged results, retrieve the next set using the same parameters that were used to retrieve the initial set
+Added methods to get answers, questions, favorites, etc from a user that has been retrieved
+
+[0.8.1]
+All classes moved into the Rubyoverflow module
+
 [0.8.0]
 Added Revision and Revisions, along with revision retrieval methods
 Added Questions.search which maps to '/search'

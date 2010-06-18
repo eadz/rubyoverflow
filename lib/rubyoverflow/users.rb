@@ -48,6 +48,16 @@ module Rubyoverflow
         hash,url = request('badges/'+id.to_s, parameters)
         Users.new hash, url
       end
+      
+      #Retrieves moderators for the current site the parameters provided
+      #
+      #Maps to '/users/moderators'
+      def retrieve_moderators(parameters = {})
+        id = convert_if_array(id)
+        hash,url = request('users/moderators', parameters)
+        Users.new hash, url
+      end
+      
     end
   
 
