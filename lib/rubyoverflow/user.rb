@@ -67,56 +67,92 @@ module Rubyoverflow
   
     #Gets the questions by the user
     def get_questions(parameters = {})
-      hash,url =request(@user_questions_url, parameters)
-      Questions.new hash, url
+      if @user_questions_url
+        hash,url =request(@user_questions_url, parameters)
+        Questions.new hash, url
+      else
+        nil
+      end
     end
     
     #Gets the answers from the user
     def get_answers(parameters = {})
-      hash,url =request(@user_answers_url, parameters)
-      Answers.new hash, url
+      if @user_answers_url
+        hash,url =request(@user_answers_url, parameters)
+        Answers.new hash, url
+      else
+        nil
+      end
     end
     
     #Gets the questions favorited by the user
     def get_favorites(parameters = {})
-      hash,url =request(@user_favorites_url, parameters)
-      Questions.new hash, url
+      if @user_favorites_url
+        hash,url =request(@user_favorites_url, parameters)
+        Questions.new hash, url
+      else
+        nil
+      end
     end
     
     #Gets the tags the user has participated in
     def get_tags(parameters = {})
-      hash,url =request(@user_tags_url, parameters)
-      Tags.new hash, url
+      if @user_tags_url
+        hash,url =request(@user_tags_url, parameters)
+        Tags.new hash, url
+      else
+        nil
+      end
     end
     
     #Gets the badges awared to the user
     def get_badges(parameters = {})
-      hash,url =request(@user_badges_url, parameters)
-      Badges.new hash, url
+      if @user_badges_url
+        hash,url =request(@user_badges_url, parameters)
+        Badges.new hash, url
+      else
+        nil
+      end
     end
     
     #Gets the user's timeline
     def get_timeline(parameters = {})
-      hash,url =request(@user_timeline_url, parameters)
-      UserTimelineEvents.new hash, url
+      if @user_timeline_url
+        hash,url =request(@user_timeline_url, parameters)
+        UserTimelineEvents.new hash, url
+      else
+        nil
+      end
     end
     
     #Gets the comments that mention the user
     def get_mentioned(parameters = {})
-      hash,url =request(@user_mentioned_url, parameters)
-      Comments.new hash, url
+      if @user_mentioned_url
+        hash,url =request(@user_mentioned_url, parameters)
+        Comments.new hash, url
+      else
+        nil
+      end
     end
     
     #Gets the comments by the user
     def get_comments(parameters = {})
-      hash,url =request(@user_comments_url, parameters)
-      Comments.new hash, url
+      if @user_comments_url
+        hash,url =request(@user_comments_url, parameters)
+        Comments.new hash, url
+      else
+        nil
+      end
     end
     
     #Gets the user's reputation
     def get_reputation(parameters = {})
-      hash,url =request(@user_reputation_url, parameters)
-      RepChanges.new hash, url
+      if @user_reputation_url
+        hash,url =request(@user_reputation_url, parameters)
+        RepChanges.new hash, url
+      else
+        nil
+      end
     end
   
   end

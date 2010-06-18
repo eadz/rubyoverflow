@@ -39,6 +39,16 @@ module Rubyoverflow
       @body = dash.body
       @comments = Comments.new dash.comments if dash.comments
     end
+    
+    #Gets the comments made on the answer
+    def get_comments(parameters = {})
+      if @answer_comments_url
+        hash,url =request(@answer_comments_url, parameters)
+        Comments.new hash, url
+      else
+        nil
+      end
+    end
 
   end
 
