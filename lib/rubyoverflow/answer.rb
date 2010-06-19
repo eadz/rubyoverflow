@@ -1,5 +1,5 @@
 module Rubyoverflow
-  class Answer
+  class Answer < Base
     attr_reader :answer_id
     attr_reader :accepted
     attr_reader :answer_comments_url
