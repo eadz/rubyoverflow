@@ -1,5 +1,5 @@
 module Rubyoverflow
-  class Question
+  class Question < Base
     attr_reader :tags
     attr_reader :answer_count
     attr_reader :answers
@@ -26,6 +26,7 @@ module Rubyoverflow
     attr_reader :title
     attr_reader :body
     attr_reader :comments
+    attr_reader :migrated
   
     def initialize(hash, request_path = '')
       dash = QuestionDash.new hash
@@ -34,10 +35,11 @@ module Rubyoverflow
       @comments = Array.new
       @answers = Array.new
     
-      dash.tags.each {|tag| @tags.push(tag)}
-      dash.comments.each {|commentHash| @comment.push(Comment.new commentHash)}
-      dash.answers.each {|answerHash| @comment.push(Answer.new answerHash)}
+      dash.tags.each {|tag| @tags.push(tag)} if dash.tags
+      dash.comments.each {|commentHash| @comment.push(Comment.new commentHash)} if dash.comments
+      dash.answers.each {|answerHash| @comment.push(Answer.new answerHash)} if dash.answers
     
+      @migrated = dash.migrated
       @answer_count = dash.answer_count
       @accepted_answer_id = dash.accepted_answer_id
       @favorite_count = dash.favorite_count
@@ -50,7 +52,7 @@ module Rubyoverflow
       @question_answers_url = dash.question_answers_url
       @question_id = dash.question_id
       @locked_date = dash.locked_date
-      @owner = User.new dash.owner
+      @owner = User.new dash.owner if dash.owner
       @creation_date = dash.creation_date
       @last_edit_date = dash.last_edit_date
       @last_activity_date = dash.last_activity_date
@@ -61,7 +63,36 @@ module Rubyoverflow
       @community_owned = dash.community_owned
       @title = dash.title
       @body = dash.body
+    end
     
+    #Gets the comments made on the question
+    def get_comments(parameters = {})
+      if @question_comments_url
+        hash,url =request(@question_comments_url, parameters)
+        Comments.new hash, url
+      else
+        nil
+      end
+    end
+    
+    #Gets the answers posted to the question
+    def get_answers(parameters = {})
+      if @question_answers_url
+        hash,url =request(@question_answers_url, parameters)
+        Answers.new hash, url
+      else
+        nil
+      end
+    end
+    
+    #Gets the timeline for the question
+    def get_timeline(parameters = {})
+      if @question_timeline_url
+        hash,url =request(@question_timeline_url, parameters)
+        PostTimelineEvents.new hash, url
+      else
+        nil
+      end
     end
   
 
@@ -94,5 +125,6 @@ module Rubyoverflow
     property :title
     property :body
     property :comments
+    property :migrated
   end
 end

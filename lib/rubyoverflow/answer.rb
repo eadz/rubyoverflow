@@ -1,5 +1,5 @@
 module Rubyoverflow
-  class Answer
+  class Answer < Base
     attr_reader :answer_id
     attr_reader :accepted
     attr_reader :answer_comments_url
@@ -38,6 +38,16 @@ module Rubyoverflow
       @title = dash.title
       @body = dash.body
       @comments = Comments.new dash.comments if dash.comments
+    end
+    
+    #Gets the comments made on the answer
+    def get_comments(parameters = {})
+      if @answer_comments_url
+        hash,url =request(@answer_comments_url, parameters)
+        Comments.new hash, url
+      else
+        nil
+      end
     end
 
   end

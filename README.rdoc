@@ -13,11 +13,19 @@ rubyoverflow is a library for querying the Stack Overflow API
 == Example
 
     require 'rubyoverflow'
-    parameters = {:sort=>'name',:order=>'asc',:pagesize=>'5'}
-    tagsItem = Tags.retrieve(parameters) # gets the first 5 tags in alphabetical order by name
-    firstTag = tagsItem.tags.first # gets the first tag
+    include Rubyoverflow
+    # Tags Example
+    tagsSet = Tags.retrieve_all({:sort=>'name',:order=>'asc',:pagesize=>'5'}) # gets the first 5 tags in alphabetical order by name
+    firstTag = tagsSet.tags.first # gets the first tag
+    secondTagSet = tagsSet.get_next_set #gets the next page of tags using the prior parameters
+    thirdTagSet = secondTagSet.get_next_set #gets the third page of tags using the prior parameters
     puts firstTag.name # => tag's name
     puts tag.count # => # of questions with tag
+    
+    #User Example
+    me = Users.retrieve_by_id(53587).users.first  #gets me
+    myquestions = me.get_questions  #gets the questions I asked
+
 
 == Note on Patches/Pull Requests
  

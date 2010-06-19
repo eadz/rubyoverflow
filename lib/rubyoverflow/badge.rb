@@ -21,6 +21,17 @@ module Rubyoverflow
       @user = User.new dash.user if dash.user
       @badges_recipients_url = dash.badges_recipients_url
     end
+    
+    #Retrieves all the users that have received the badge
+    def get_recipients(parameters = {})
+      if @badges_recipients_url
+        hash,url =request(@badges_recipients_url, parameters)
+        Users.new hash, url
+      else
+        nil
+      end
+    end
+    
   end
 
   class BadgeDash < Hashie::Dash

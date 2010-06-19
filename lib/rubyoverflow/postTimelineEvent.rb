@@ -27,7 +27,36 @@ module Rubyoverflow
       @post_url = dash.post_url
       @post_comment_url = dash.post_comment_url
     end
-  
+    
+    #Gets the question associated with this postTimelineEvent
+    def get_post(parameters={})
+      if @post_url
+        hash,url = request(@post_url, parameters) 
+        Questions.new hash, url #since, for now, you can only get a timeline from a question, we return a question set
+      else
+        nil
+      end
+    end
+    
+    #Gets the revision associated with this postTimelineEvent
+    def get_post_revision(parameters={})
+      if @post_revision_url
+        hash,url = request(@post_revision_url, parameters) 
+        Revisions.new hash, url
+      else
+        nil
+      end
+    end
+    
+    #Gets the comment associated with this postTimelineEvent
+    def get_post_comment(parameters={})
+      if @post_comment_url
+        hash,url = request(@post_comment_url, parameters) 
+        Comments.new hash, url
+      else
+        nil
+      end
+    end
   
   end
 
