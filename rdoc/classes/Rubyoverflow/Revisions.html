@@ -88,10 +88,10 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000033">get_next_set</a>&nbsp;&nbsp;
-      <a href="#M000032">new</a>&nbsp;&nbsp;
-      <a href="#M000034">retrieve_by_post</a>&nbsp;&nbsp;
-      <a href="#M000035">retrieve_post_revision</a>&nbsp;&nbsp;
+      <a href="#M000037">get_next_set</a>&nbsp;&nbsp;
+      <a href="#M000036">new</a>&nbsp;&nbsp;
+      <a href="#M000038">retrieve_by_post</a>&nbsp;&nbsp;
+      <a href="#M000039">retrieve_post_revision</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -126,19 +126,19 @@
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000032" class="method-detail">
-        <a name="M000032"></a>
+      <div id="method-M000036" class="method-detail">
+        <a name="M000036"></a>
 
         <div class="method-heading">
-          <a href="#M000032" class="method-signature">
+          <a href="#M000036" class="method-signature">
           <span class="method-name">new</span><span class="method-args">(hash, request_path = '')</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000032-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000032-source">
+            onclick="toggleCode('M000036-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000036-source">
 <pre>
 <span class="ruby-comment cmt"># File lib/rubyoverflow/revisions.rb, line 5</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">hash</span>, <span class="ruby-identifier">request_path</span> = <span class="ruby-value str">''</span>)
@@ -153,11 +153,11 @@
         </div>
       </div>
 
-      <div id="method-M000034" class="method-detail">
-        <a name="M000034"></a>
+      <div id="method-M000038" class="method-detail">
+        <a name="M000038"></a>
 
         <div class="method-heading">
-          <a href="#M000034" class="method-signature">
+          <a href="#M000038" class="method-signature">
           <span class="method-name">retrieve_by_post</span><span class="method-args">(id, parameters = {})</span>
           </a>
         </div>
@@ -173,8 +173,8 @@ id can be an int, string or an array of ints or strings
 Maps to &#8216;revisions/{id}&#8217;
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000034-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000034-source">
+            onclick="toggleCode('M000038-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000038-source">
 <pre>
 <span class="ruby-comment cmt"># File lib/rubyoverflow/revisions.rb, line 26</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieve_by_post</span>(<span class="ruby-identifier">id</span>, <span class="ruby-identifier">parameters</span> = {})
@@ -187,11 +187,11 @@ Maps to &#8216;revisions/{id}&#8217;
         </div>
       </div>
 
-      <div id="method-M000035" class="method-detail">
-        <a name="M000035"></a>
+      <div id="method-M000039" class="method-detail">
+        <a name="M000039"></a>
 
         <div class="method-heading">
-          <a href="#M000035" class="method-signature">
+          <a href="#M000039" class="method-signature">
           <span class="method-name">retrieve_post_revision</span><span class="method-args">(id, revisionguid, parameters = {})</span>
           </a>
         </div>
@@ -210,8 +210,8 @@ revisionguid must be a string in 8-4-4-4-12 format
 Maps to &#8216;revisions/{id}&#8217;
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000035-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000035-source">
+            onclick="toggleCode('M000039-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000039-source">
 <pre>
 <span class="ruby-comment cmt"># File lib/rubyoverflow/revisions.rb, line 39</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieve_post_revision</span>(<span class="ruby-identifier">id</span>, <span class="ruby-identifier">revisionguid</span>, <span class="ruby-identifier">parameters</span> = {})
@@ -226,11 +226,11 @@ Maps to &#8216;revisions/{id}&#8217;
 
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000033" class="method-detail">
-        <a name="M000033"></a>
+      <div id="method-M000037" class="method-detail">
+        <a name="M000037"></a>
 
         <div class="method-heading">
-          <a href="#M000033" class="method-signature">
+          <a href="#M000037" class="method-signature">
           <span class="method-name">get_next_set</span><span class="method-args">()</span>
           </a>
         </div>
@@ -241,8 +241,8 @@ Retrieves the next set of revisions using the same parameters used to
 retrieve the current set
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000033-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000033-source">
+            onclick="toggleCode('M000037-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000037-source">
 <pre>
 <span class="ruby-comment cmt"># File lib/rubyoverflow/revisions.rb, line 14</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_next_set</span>

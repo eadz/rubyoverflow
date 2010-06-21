@@ -88,15 +88,15 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000047">get_next_set</a>&nbsp;&nbsp;
-      <a href="#M000046">new</a>&nbsp;&nbsp;
-      <a href="#M000048">retrieve_all</a>&nbsp;&nbsp;
-      <a href="#M000049">retrieve_by_id</a>&nbsp;&nbsp;
-      <a href="#M000050">retrieve_by_tag</a>&nbsp;&nbsp;
-      <a href="#M000053">retrieve_by_user</a>&nbsp;&nbsp;
-      <a href="#M000052">retrieve_favorites</a>&nbsp;&nbsp;
-      <a href="#M000051">retrieve_unanswered</a>&nbsp;&nbsp;
-      <a href="#M000054">search</a>&nbsp;&nbsp;
+      <a href="#M000052">get_next_set</a>&nbsp;&nbsp;
+      <a href="#M000051">new</a>&nbsp;&nbsp;
+      <a href="#M000053">retrieve_all</a>&nbsp;&nbsp;
+      <a href="#M000054">retrieve_by_id</a>&nbsp;&nbsp;
+      <a href="#M000055">retrieve_by_tag</a>&nbsp;&nbsp;
+      <a href="#M000058">retrieve_by_user</a>&nbsp;&nbsp;
+      <a href="#M000057">retrieve_favorites</a>&nbsp;&nbsp;
+      <a href="#M000056">retrieve_unanswered</a>&nbsp;&nbsp;
+      <a href="#M000059">search</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -131,25 +131,26 @@
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000046" class="method-detail">
-        <a name="M000046"></a>
+      <div id="method-M000051" class="method-detail">
+        <a name="M000051"></a>
 
         <div class="method-heading">
-          <a href="#M000046" class="method-signature">
+          <a href="#M000051" class="method-signature">
           <span class="method-name">new</span><span class="method-args">(hash, request_path = '')</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000046-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000046-source">
+            onclick="toggleCode('M000051-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000051-source">
 <pre>
 <span class="ruby-comment cmt"># File lib/rubyoverflow/questions.rb, line 5</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">hash</span>, <span class="ruby-identifier">request_path</span> = <span class="ruby-value str">''</span>)
       <span class="ruby-identifier">dash</span> = <span class="ruby-constant">QuestionsDash</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">hash</span>
     
-      <span class="ruby-ivar">@questions</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">questions</span>
+      <span class="ruby-ivar">@questions</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+      <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">questions</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">questionHash</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@questions</span>.<span class="ruby-identifier">push</span>(<span class="ruby-constant">Question</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">questionHash</span>)}
     
       <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">dash</span>,<span class="ruby-identifier">request_path</span>)
     <span class="ruby-keyword kw">end</span>
@@ -158,11 +159,11 @@
         </div>
       </div>
 
-      <div id="method-M000048" class="method-detail">
-        <a name="M000048"></a>
+      <div id="method-M000053" class="method-detail">
+        <a name="M000053"></a>
 
         <div class="method-heading">
-          <a href="#M000048" class="method-signature">
+          <a href="#M000053" class="method-signature">
           <span class="method-name">retrieve_all</span><span class="method-args">(parameters = {})</span>
           </a>
         </div>
@@ -175,10 +176,10 @@ Retrieves all questions using the parameters provided
 Maps to &#8217;/questions&#8216;
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000048-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000048-source">
+            onclick="toggleCode('M000053-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000053-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/rubyoverflow/questions.rb, line 24</span>
+<span class="ruby-comment cmt"># File lib/rubyoverflow/questions.rb, line 25</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieve_all</span>(<span class="ruby-identifier">parameters</span> = {})
         <span class="ruby-identifier">hash</span>, <span class="ruby-identifier">url</span> = <span class="ruby-identifier">request</span>(<span class="ruby-value str">'questions'</span>,<span class="ruby-identifier">parameters</span>)
         <span class="ruby-constant">Questions</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">hash</span>, <span class="ruby-identifier">url</span>
@@ -188,11 +189,11 @@ Maps to &#8217;/questions&#8216;
         </div>
       </div>
 
-      <div id="method-M000049" class="method-detail">
-        <a name="M000049"></a>
+      <div id="method-M000054" class="method-detail">
+        <a name="M000054"></a>
 
         <div class="method-heading">
-          <a href="#M000049" class="method-signature">
+          <a href="#M000054" class="method-signature">
           <span class="method-name">retrieve_by_id</span><span class="method-args">(id, parameters = {})</span>
           </a>
         </div>
@@ -208,10 +209,10 @@ id can be an int, string, or an array of ints or strings
 Maps to &#8217;/questions/{id}&#8217;
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000049-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000049-source">
+            onclick="toggleCode('M000054-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000054-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/rubyoverflow/questions.rb, line 34</span>
+<span class="ruby-comment cmt"># File lib/rubyoverflow/questions.rb, line 35</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieve_by_id</span>(<span class="ruby-identifier">id</span>, <span class="ruby-identifier">parameters</span> = {})
         <span class="ruby-identifier">id</span> = <span class="ruby-identifier">convert_if_array</span>(<span class="ruby-identifier">id</span>)
       
@@ -223,11 +224,11 @@ Maps to &#8217;/questions/{id}&#8217;
         </div>
       </div>
 
-      <div id="method-M000050" class="method-detail">
-        <a name="M000050"></a>
+      <div id="method-M000055" class="method-detail">
+        <a name="M000055"></a>
 
         <div class="method-heading">
-          <a href="#M000050" class="method-signature">
+          <a href="#M000055" class="method-signature">
           <span class="method-name">retrieve_by_tag</span><span class="method-args">(tags, parameters = {})</span>
           </a>
         </div>
@@ -243,10 +244,10 @@ tag can be a string or an array of strings, tag(s) should be URL Encoded
 Maps to &#8217;/questions/tagged/{tags}
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000050-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000050-source">
+            onclick="toggleCode('M000055-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000055-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/rubyoverflow/questions.rb, line 46</span>
+<span class="ruby-comment cmt"># File lib/rubyoverflow/questions.rb, line 47</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieve_by_tag</span>(<span class="ruby-identifier">tags</span>, <span class="ruby-identifier">parameters</span> = {})
         <span class="ruby-identifier">tags</span> = <span class="ruby-identifier">convert_if_array</span>(<span class="ruby-identifier">tags</span>)
       
@@ -258,11 +259,11 @@ Maps to &#8217;/questions/tagged/{tags}
         </div>
       </div>
 
-      <div id="method-M000053" class="method-detail">
-        <a name="M000053"></a>
+      <div id="method-M000058" class="method-detail">
+        <a name="M000058"></a>
 
         <div class="method-heading">
-          <a href="#M000053" class="method-signature">
+          <a href="#M000058" class="method-signature">
           <span class="method-name">retrieve_by_user</span><span class="method-args">(id, parameters = {})</span>
           </a>
         </div>
@@ -278,10 +279,10 @@ id can be an int, string, or an array of ints or strings
 Maps to &#8217;/users/{id}/questions&#8216;
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000053-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000053-source">
+            onclick="toggleCode('M000058-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000058-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/rubyoverflow/questions.rb, line 78</span>
+<span class="ruby-comment cmt"># File lib/rubyoverflow/questions.rb, line 79</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieve_by_user</span>(<span class="ruby-identifier">id</span>, <span class="ruby-identifier">parameters</span> = {})
         <span class="ruby-identifier">id</span> = <span class="ruby-identifier">convert_if_array</span>(<span class="ruby-identifier">id</span>)
       
@@ -293,11 +294,11 @@ Maps to &#8217;/users/{id}/questions&#8216;
         </div>
       </div>
 
-      <div id="method-M000052" class="method-detail">
-        <a name="M000052"></a>
+      <div id="method-M000057" class="method-detail">
+        <a name="M000057"></a>
 
         <div class="method-heading">
-          <a href="#M000052" class="method-signature">
+          <a href="#M000057" class="method-signature">
           <span class="method-name">retrieve_favorites</span><span class="method-args">(user_id, parameters = {})</span>
           </a>
         </div>
@@ -313,10 +314,10 @@ user_id can be an int, string, or an array of ints or strings
 Maps to &#8217;/users/{id}/favorites
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000052-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000052-source">
+            onclick="toggleCode('M000057-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000057-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/rubyoverflow/questions.rb, line 66</span>
+<span class="ruby-comment cmt"># File lib/rubyoverflow/questions.rb, line 67</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieve_favorites</span>(<span class="ruby-identifier">user_id</span>, <span class="ruby-identifier">parameters</span> = {})
         <span class="ruby-identifier">user_id</span> = <span class="ruby-identifier">convert_if_array</span>(<span class="ruby-identifier">user_id</span>)
       
@@ -328,11 +329,11 @@ Maps to &#8217;/users/{id}/favorites
         </div>
       </div>
 
-      <div id="method-M000051" class="method-detail">
-        <a name="M000051"></a>
+      <div id="method-M000056" class="method-detail">
+        <a name="M000056"></a>
 
         <div class="method-heading">
-          <a href="#M000051" class="method-signature">
+          <a href="#M000056" class="method-signature">
           <span class="method-name">retrieve_unanswered</span><span class="method-args">(parameters = {})</span>
           </a>
         </div>
@@ -345,10 +346,10 @@ Retieves a set of unanswered questions using the parameters provided
 Maps to &#8217;/questions/unanswered&#8216;
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000051-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000051-source">
+            onclick="toggleCode('M000056-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000056-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/rubyoverflow/questions.rb, line 56</span>
+<span class="ruby-comment cmt"># File lib/rubyoverflow/questions.rb, line 57</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieve_unanswered</span>(<span class="ruby-identifier">parameters</span> = {})
         <span class="ruby-identifier">hash</span>, <span class="ruby-identifier">url</span> = <span class="ruby-identifier">request</span>(<span class="ruby-value str">'questions/unanswered'</span>, <span class="ruby-identifier">parameters</span>)
         <span class="ruby-constant">Questions</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">hash</span>, <span class="ruby-identifier">url</span>
@@ -358,11 +359,11 @@ Maps to &#8217;/questions/unanswered&#8216;
         </div>
       </div>
 
-      <div id="method-M000054" class="method-detail">
-        <a name="M000054"></a>
+      <div id="method-M000059" class="method-detail">
+        <a name="M000059"></a>
 
         <div class="method-heading">
-          <a href="#M000054" class="method-signature">
+          <a href="#M000059" class="method-signature">
           <span class="method-name">search</span><span class="method-args">(parameters = {})</span>
           </a>
         </div>
@@ -373,16 +374,16 @@ Searches questions. One of intitle, tagged, or nottagged must be set.
 </p>
 <p>
 Example: <a
-href="Questions.html#M000054">Questions.search</a>({:tagged=&gt;&#8217;c%23&#8217;,:nottagged=&gt;&#8217;sql;asp.net&#8217;})
+href="Questions.html#M000059">Questions.search</a>({:tagged=&gt;&#8217;c%23&#8217;,:nottagged=&gt;&#8217;sql;asp.net&#8217;})
 </p>
 <p>
-Maps to &#8217;/<a href="Questions.html#M000054">search</a>&#8216;
+Maps to &#8217;/<a href="Questions.html#M000059">search</a>&#8216;
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000054-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000054-source">
+            onclick="toggleCode('M000059-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000059-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/rubyoverflow/questions.rb, line 90</span>
+<span class="ruby-comment cmt"># File lib/rubyoverflow/questions.rb, line 91</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">search</span>(<span class="ruby-identifier">parameters</span> = {})
         <span class="ruby-identifier">hash</span>, <span class="ruby-identifier">url</span> = <span class="ruby-identifier">request</span>(<span class="ruby-value str">'search'</span>, <span class="ruby-identifier">parameters</span>)
         <span class="ruby-constant">Questions</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">hash</span>, <span class="ruby-identifier">url</span>
@@ -394,11 +395,11 @@ Maps to &#8217;/<a href="Questions.html#M000054">search</a>&#8216;
 
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000047" class="method-detail">
-        <a name="M000047"></a>
+      <div id="method-M000052" class="method-detail">
+        <a name="M000052"></a>
 
         <div class="method-heading">
-          <a href="#M000047" class="method-signature">
+          <a href="#M000052" class="method-signature">
           <span class="method-name">get_next_set</span><span class="method-args">()</span>
           </a>
         </div>
@@ -409,10 +410,10 @@ Retrieves the next set of questions using the same parameters used to
 retrieve the current set
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000047-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000047-source">
+            onclick="toggleCode('M000052-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000052-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/rubyoverflow/questions.rb, line 14</span>
+<span class="ruby-comment cmt"># File lib/rubyoverflow/questions.rb, line 15</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_next_set</span>
       <span class="ruby-identifier">hash</span>,<span class="ruby-identifier">url</span> = <span class="ruby-identifier">perform_next_page_request</span>
       <span class="ruby-constant">Questions</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">hash</span>,<span class="ruby-identifier">url</span>

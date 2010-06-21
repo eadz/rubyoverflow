@@ -56,7 +56,7 @@
     </tr>
     <tr class="top-aligned-row">
       <td><strong>Last Update:</strong></td>
-      <td>Sun Jun 13 15:01:32 -0400 2010</td>
+      <td>Mon Jun 21 14:45:57 -0400 2010</td>
     </tr>
     </table>
   </div>
@@ -84,11 +84,18 @@ rubyoverflow is a library for querying the Stack Overflow API
 <h2>Example</h2>
 <pre>
     require 'rubyoverflow'
-    parameters = {:sort=&gt;'name',:order=&gt;'asc',:pagesize=&gt;'5'}
-    tagsItem = Tags.retrieve(parameters) # gets the first 5 tags in alphabetical order by name
-    firstTag = tagsItem.tags.first # gets the first tag
+    include Rubyoverflow
+    # Tags Example
+    tagsSet = Tags.retrieve_all({:sort=&gt;'name',:order=&gt;'asc',:pagesize=&gt;'5'}) # gets the first 5 tags in alphabetical order by name
+    firstTag = tagsSet.tags.first # gets the first tag
+    secondTagSet = tagsSet.get_next_set #gets the next page of tags using the prior parameters
+    thirdTagSet = secondTagSet.get_next_set #gets the third page of tags using the prior parameters
     puts firstTag.name # =&gt; tag's name
     puts tag.count # =&gt; # of questions with tag
+
+    #User Example
+    me = Users.retrieve_by_id(53587).users.first  #gets me
+    myquestions = me.get_questions  #gets the questions I asked
 </pre>
 <h2>Note on Patches/Pull Requests</h2>
 <ul>

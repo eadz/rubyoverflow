@@ -65,7 +65,9 @@
         <tr class="top-aligned-row">
             <td><strong>Parent:</strong></td>
             <td>
-                Object
+                <a href="Base.html">
+                Base
+               </a>
             </td>
         </tr>
         </table>
@@ -86,7 +88,10 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000055">new</a>&nbsp;&nbsp;
+      <a href="#M000062">get_answers</a>&nbsp;&nbsp;
+      <a href="#M000061">get_comments</a>&nbsp;&nbsp;
+      <a href="#M000063">get_timeline</a>&nbsp;&nbsp;
+      <a href="#M000060">new</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -187,6 +192,11 @@
           <td class="context-item-desc"></td>
         </tr>
         <tr class="top-aligned-row context-row">
+          <td class="context-item-name">migrated</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
           <td class="context-item-name">owner</td>
           <td class="context-item-value">&nbsp;[R]&nbsp;</td>
           <td class="context-item-desc"></td>
@@ -246,21 +256,21 @@
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000055" class="method-detail">
-        <a name="M000055"></a>
+      <div id="method-M000060" class="method-detail">
+        <a name="M000060"></a>
 
         <div class="method-heading">
-          <a href="#M000055" class="method-signature">
+          <a href="#M000060" class="method-signature">
           <span class="method-name">new</span><span class="method-args">(hash, request_path = '')</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000055-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000055-source">
+            onclick="toggleCode('M000060-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000060-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/rubyoverflow/question.rb, line 30</span>
+<span class="ruby-comment cmt"># File lib/rubyoverflow/question.rb, line 31</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">hash</span>, <span class="ruby-identifier">request_path</span> = <span class="ruby-value str">''</span>)
       <span class="ruby-identifier">dash</span> = <span class="ruby-constant">QuestionDash</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">hash</span>
     
@@ -268,10 +278,11 @@
       <span class="ruby-ivar">@comments</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
       <span class="ruby-ivar">@answers</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
     
-      <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">tags</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">tag</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@tags</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">tag</span>)}
-      <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">comments</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">commentHash</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">push</span>(<span class="ruby-constant">Comment</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">commentHash</span>)}
-      <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">answers</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">answerHash</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">push</span>(<span class="ruby-constant">Answer</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">answerHash</span>)}
+      <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">tags</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">tag</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@tags</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">tag</span>)} <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">tags</span>
+      <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">comments</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">commentHash</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">push</span>(<span class="ruby-constant">Comment</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">commentHash</span>)} <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">comments</span>
+      <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">answers</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">answerHash</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@comment</span>.<span class="ruby-identifier">push</span>(<span class="ruby-constant">Answer</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">answerHash</span>)} <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">answers</span>
     
+      <span class="ruby-ivar">@migrated</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">migrated</span>
       <span class="ruby-ivar">@answer_count</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">answer_count</span>
       <span class="ruby-ivar">@accepted_answer_id</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">accepted_answer_id</span>
       <span class="ruby-ivar">@favorite_count</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">favorite_count</span>
@@ -284,7 +295,7 @@
       <span class="ruby-ivar">@question_answers_url</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">question_answers_url</span>
       <span class="ruby-ivar">@question_id</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">question_id</span>
       <span class="ruby-ivar">@locked_date</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">locked_date</span>
-      <span class="ruby-ivar">@owner</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">owner</span>
+      <span class="ruby-ivar">@owner</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">owner</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">owner</span>
       <span class="ruby-ivar">@creation_date</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">creation_date</span>
       <span class="ruby-ivar">@last_edit_date</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">last_edit_date</span>
       <span class="ruby-ivar">@last_activity_date</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">last_activity_date</span>
@@ -295,7 +306,101 @@
       <span class="ruby-ivar">@community_owned</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">community_owned</span>
       <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">title</span>
       <span class="ruby-ivar">@body</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">body</span>
-    
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000062" class="method-detail">
+        <a name="M000062"></a>
+
+        <div class="method-heading">
+          <a href="#M000062" class="method-signature">
+          <span class="method-name">get_answers</span><span class="method-args">(parameters = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Gets the answers posted to the question
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000062-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000062-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/rubyoverflow/question.rb, line 79</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_answers</span>(<span class="ruby-identifier">parameters</span> = {})
+      <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@question_answers_url</span>
+        <span class="ruby-identifier">hash</span>,<span class="ruby-identifier">url</span> =<span class="ruby-identifier">request</span>(<span class="ruby-ivar">@question_answers_url</span>, <span class="ruby-identifier">parameters</span>)
+        <span class="ruby-constant">Answers</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">hash</span>, <span class="ruby-identifier">url</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000061" class="method-detail">
+        <a name="M000061"></a>
+
+        <div class="method-heading">
+          <a href="#M000061" class="method-signature">
+          <span class="method-name">get_comments</span><span class="method-args">(parameters = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Gets the comments made on the question
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000061-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000061-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/rubyoverflow/question.rb, line 69</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_comments</span>(<span class="ruby-identifier">parameters</span> = {})
+      <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@question_comments_url</span>
+        <span class="ruby-identifier">hash</span>,<span class="ruby-identifier">url</span> =<span class="ruby-identifier">request</span>(<span class="ruby-ivar">@question_comments_url</span>, <span class="ruby-identifier">parameters</span>)
+        <span class="ruby-constant">Comments</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">hash</span>, <span class="ruby-identifier">url</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000063" class="method-detail">
+        <a name="M000063"></a>
+
+        <div class="method-heading">
+          <a href="#M000063" class="method-signature">
+          <span class="method-name">get_timeline</span><span class="method-args">(parameters = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Gets the timeline for the question
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000063-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000063-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/rubyoverflow/question.rb, line 89</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_timeline</span>(<span class="ruby-identifier">parameters</span> = {})
+      <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@question_timeline_url</span>
+        <span class="ruby-identifier">hash</span>,<span class="ruby-identifier">url</span> =<span class="ruby-identifier">request</span>(<span class="ruby-ivar">@question_timeline_url</span>, <span class="ruby-identifier">parameters</span>)
+        <span class="ruby-constant">PostTimelineEvents</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">hash</span>, <span class="ruby-identifier">url</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-keyword kw">end</span>
     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
