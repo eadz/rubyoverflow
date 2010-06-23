@@ -57,6 +57,7 @@ module Rubyoverflow
     VERSION = '0.8'
 
     attr_reader :host
+    attr_reader :api_key
     
     def initialize(options = OpenStruct.new)
       @host = options.host || HOST
