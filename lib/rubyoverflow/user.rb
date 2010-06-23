@@ -30,6 +30,7 @@ module Rubyoverflow
     attr_reader :badge_counts
     attr_reader :timed_penalty_date
     attr_reader :association_id
+    attr_reader :on_site
   
     def initialize(hash, request_path = '')
       dash = UserDash.new hash
@@ -63,6 +64,7 @@ module Rubyoverflow
       @badge_counts = BadgeCounts.new dash.badge_counts if dash.badge_counts
       @timed_penalty_date = dash.timed_penalty_date
       @association_id = dash.association_id
+      @on_site = ApiSite.new dash.on_site if dash.on_site
     end
   
     #Gets the questions by the user
@@ -154,6 +156,16 @@ module Rubyoverflow
         nil
       end
     end
+    
+    #Gets the user's other accounts
+    def retrieve_associated_accounts
+      if @association_id
+        Users.retrieve_associated_accounts @association_id
+      else
+        nil
+      end
+    end
+    
   
   end
 
@@ -187,5 +199,6 @@ module Rubyoverflow
     property :badge_counts
     property :timed_penalty_date
     property :association_id
+    property :on_site
   end
 end

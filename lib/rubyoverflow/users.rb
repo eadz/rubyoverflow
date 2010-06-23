@@ -8,7 +8,9 @@ module Rubyoverflow
       super(dash, request_path)
       @users = Array.new
     
-      dash.users.each{|userHash| @users.push(User.new userHash)}
+      dash.users.each{|userHash| @users.push(User.new userHash)} if dash.users
+      dash.associated_users.each{|userHash| @users.push(User.new userHash)} if dash.associated_users
+      
     end
     
     #Retrieves the next set of users using the same parameters used to retrieve the current set
@@ -58,6 +60,15 @@ module Rubyoverflow
         Users.new hash, url
       end
       
+      def retrieve_associated_accounts(guid)
+        client = Client.stackauth_client(Base.client.api_key)
+
+        hash,url = client.request('users/' + guid +'/associated',{})
+        
+        Users.new hash,url
+      end
+      
+      
     end
   
 
@@ -65,5 +76,6 @@ module Rubyoverflow
 
   class UsersDash < PagedDash
     property :users
+    property :associated_users
   end
 end

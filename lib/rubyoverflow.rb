@@ -45,6 +45,9 @@ require 'rubyoverflow/revisions'
 
 require 'rubyoverflow/errors'
 
+require 'rubyoverflow/apiSite'
+require 'rubyoverflow/apiSites'
+
 module Rubyoverflow
   class Client
     #Most of this class is borrowed from the Pilha (http://github.com/dlt/pilha) project because a) it works, b) a lot of this code would be the same regardless of implementation
@@ -54,6 +57,7 @@ module Rubyoverflow
     VERSION = '0.8'
 
     attr_reader :host
+    attr_reader :api_key
     
     def initialize(options = OpenStruct.new)
       @host = options.host || HOST
@@ -90,6 +94,13 @@ module Rubyoverflow
           @client = client
         end
         client
+      end
+      
+      def stackauth_client(api_key = '')
+        options = OpenStruct.new
+        options.host = 'http://stackauth.com/'
+        options.api_key = api_key
+        Client.new options
       end
     end
 
