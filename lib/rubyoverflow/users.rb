@@ -55,7 +55,6 @@ module Rubyoverflow
       #
       #Maps to '/users/moderators'
       def retrieve_moderators(parameters = {})
-        id = convert_if_array(id)
         hash,url = request('users/moderators', parameters)
         Users.new hash, url
       end

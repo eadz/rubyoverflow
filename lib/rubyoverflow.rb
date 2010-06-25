@@ -54,7 +54,7 @@ module Rubyoverflow
     # (especially the open => gzip code, query string, and normalize), and c) I'm new to ruby, so I'm going to skip pass some of the more 'boring' stuff and get to the 
     # interesting parts.  I plan to re-examine this at a later point
     HOST = 'http://api.stackoverflow.com'
-    VERSION = '0.8'
+    VERSION = '0.9'
 
     attr_reader :host
     attr_reader :api_key
