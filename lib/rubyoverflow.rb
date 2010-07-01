@@ -1,13 +1,10 @@
 path = File.expand_path(File.dirname(__FILE__))
 $LOAD_PATH.unshift(path) unless $LOAD_PATH.include?(path)
 
-require 'rubygems'
-
-require 'open-uri'
+require 'httparty'
 require 'zlib'
-require 'json'
-require 'hashie'
 require 'ostruct'
+require 'hashie'
 
 require 'rubyoverflow/base'
 require 'rubyoverflow/pagedBase'
@@ -50,6 +47,8 @@ require 'rubyoverflow/apiSites'
 
 module Rubyoverflow
   class Client
+    include HTTParty
+    format :json
     #Most of this class is borrowed from the Pilha (http://github.com/dlt/pilha) project because a) it works, b) a lot of this code would be the same regardless of implementation
     # (especially the open => gzip code, query string, and normalize), and c) I'm new to ruby, so I'm going to skip pass some of the more 'boring' stuff and get to the 
     # interesting parts.  I plan to re-examine this at a later point
@@ -65,14 +64,11 @@ module Rubyoverflow
       @api_key = options.api_key
     end
     
-    def get(url) 
-      stream = open(url) { |stream| Zlib::GzipReader.new(stream).read }
-      return JSON.parse(stream), url
-    end
-    
     def request(path, parameters)
       parameters.merge! :key => @api_key if @api_key
-      get (host_path + normalize(path) + query_string(parameters))
+      url = host_path + normalize(path) + query_string(parameters)
+      response = self.class.get url
+      return response.parsed_response, url
     end
     
     def host_path

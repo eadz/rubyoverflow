@@ -10,7 +10,7 @@ begin
     gem.email = "phasor@phsr.org"
     gem.homepage = "http://github.com/phsr/rubyoverflow"
     gem.authors = ["phsr"]
-    gem.add_dependency 'json', '>=0'
+    gem.add_dependency 'httparty', '>=0'
     gem.add_dependency 'hashie', '>=0'
     gem.add_development_dependency "shoulda", ">= 0"
     gem.files.include FileList['lib/**/*.rb', 'bin/*', '[A-Z]*', 'test/**/*'].to_a
