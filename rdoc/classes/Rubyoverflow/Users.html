@@ -88,12 +88,13 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000087">get_next_set</a>&nbsp;&nbsp;
-      <a href="#M000086">new</a>&nbsp;&nbsp;
-      <a href="#M000088">retrieve_all</a>&nbsp;&nbsp;
-      <a href="#M000090">retrieve_by_badge</a>&nbsp;&nbsp;
-      <a href="#M000089">retrieve_by_id</a>&nbsp;&nbsp;
-      <a href="#M000091">retrieve_moderators</a>&nbsp;&nbsp;
+      <a href="#M000092">get_next_set</a>&nbsp;&nbsp;
+      <a href="#M000091">new</a>&nbsp;&nbsp;
+      <a href="#M000093">retrieve_all</a>&nbsp;&nbsp;
+      <a href="#M000097">retrieve_associated_accounts</a>&nbsp;&nbsp;
+      <a href="#M000095">retrieve_by_badge</a>&nbsp;&nbsp;
+      <a href="#M000094">retrieve_by_id</a>&nbsp;&nbsp;
+      <a href="#M000096">retrieve_moderators</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -128,19 +129,19 @@
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000086" class="method-detail">
-        <a name="M000086"></a>
+      <div id="method-M000091" class="method-detail">
+        <a name="M000091"></a>
 
         <div class="method-heading">
-          <a href="#M000086" class="method-signature">
+          <a href="#M000091" class="method-signature">
           <span class="method-name">new</span><span class="method-args">(hash, request_path = '')</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000086-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000086-source">
+            onclick="toggleCode('M000091-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000091-source">
 <pre>
 <span class="ruby-comment cmt"># File lib/rubyoverflow/users.rb, line 6</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">hash</span>, <span class="ruby-identifier">request_path</span> = <span class="ruby-value str">''</span>)
@@ -148,18 +149,20 @@
       <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">dash</span>, <span class="ruby-identifier">request_path</span>)
       <span class="ruby-ivar">@users</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
     
-      <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">each</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">userHash</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@users</span>.<span class="ruby-identifier">push</span>(<span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">userHash</span>)}
+      <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">each</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">userHash</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@users</span>.<span class="ruby-identifier">push</span>(<span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">userHash</span>)} <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">users</span>
+      <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">associated_users</span>.<span class="ruby-identifier">each</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">userHash</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@users</span>.<span class="ruby-identifier">push</span>(<span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">userHash</span>)} <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">associated_users</span>
+      
     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000088" class="method-detail">
-        <a name="M000088"></a>
+      <div id="method-M000093" class="method-detail">
+        <a name="M000093"></a>
 
         <div class="method-heading">
-          <a href="#M000088" class="method-signature">
+          <a href="#M000093" class="method-signature">
           <span class="method-name">retrieve_all</span><span class="method-args">(parameters = {})</span>
           </a>
         </div>
@@ -172,10 +175,10 @@ Retieves all users using the parameters provided
 Maps to &#8217;/users&#8216;
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000088-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000088-source">
+            onclick="toggleCode('M000093-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000093-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/rubyoverflow/users.rb, line 25</span>
+<span class="ruby-comment cmt"># File lib/rubyoverflow/users.rb, line 27</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieve_all</span>(<span class="ruby-identifier">parameters</span> = {})
         <span class="ruby-identifier">hash</span>,<span class="ruby-identifier">url</span> = <span class="ruby-identifier">request</span>(<span class="ruby-value str">'users/'</span>, <span class="ruby-identifier">parameters</span>)
         <span class="ruby-constant">Users</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">hash</span>, <span class="ruby-identifier">url</span>
@@ -185,11 +188,38 @@ Maps to &#8217;/users&#8216;
         </div>
       </div>
 
-      <div id="method-M000090" class="method-detail">
-        <a name="M000090"></a>
+      <div id="method-M000097" class="method-detail">
+        <a name="M000097"></a>
 
         <div class="method-heading">
-          <a href="#M000090" class="method-signature">
+          <a href="#M000097" class="method-signature">
+          <span class="method-name">retrieve_associated_accounts</span><span class="method-args">(guid)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000097-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000097-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/rubyoverflow/users.rb, line 62</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieve_associated_accounts</span>(<span class="ruby-identifier">guid</span>)
+        <span class="ruby-identifier">client</span> = <span class="ruby-constant">Client</span>.<span class="ruby-identifier">stackauth_client</span>(<span class="ruby-constant">Base</span>.<span class="ruby-identifier">client</span>.<span class="ruby-identifier">api_key</span>)
+
+        <span class="ruby-identifier">hash</span>,<span class="ruby-identifier">url</span> = <span class="ruby-identifier">client</span>.<span class="ruby-identifier">request</span>(<span class="ruby-value str">'users/'</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">guid</span> <span class="ruby-operator">+</span><span class="ruby-value str">'/associated'</span>,{})
+        
+        <span class="ruby-constant">Users</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">hash</span>,<span class="ruby-identifier">url</span>
+      <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000095" class="method-detail">
+        <a name="M000095"></a>
+
+        <div class="method-heading">
+          <a href="#M000095" class="method-signature">
           <span class="method-name">retrieve_by_badge</span><span class="method-args">(id, parameters = {})</span>
           </a>
         </div>
@@ -206,10 +236,10 @@ id can be an int, string, or an array of either
 Maps to &#8217;/badges/{id}&#8217;
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000090-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000090-source">
+            onclick="toggleCode('M000095-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000095-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/rubyoverflow/users.rb, line 46</span>
+<span class="ruby-comment cmt"># File lib/rubyoverflow/users.rb, line 48</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieve_by_badge</span>(<span class="ruby-identifier">id</span>, <span class="ruby-identifier">parameters</span> = {})
         <span class="ruby-identifier">id</span> = <span class="ruby-identifier">convert_if_array</span>(<span class="ruby-identifier">id</span>)
         <span class="ruby-identifier">hash</span>,<span class="ruby-identifier">url</span> = <span class="ruby-identifier">request</span>(<span class="ruby-value str">'badges/'</span><span class="ruby-operator">+</span><span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">parameters</span>)
@@ -220,11 +250,11 @@ Maps to &#8217;/badges/{id}&#8217;
         </div>
       </div>
 
-      <div id="method-M000089" class="method-detail">
-        <a name="M000089"></a>
+      <div id="method-M000094" class="method-detail">
+        <a name="M000094"></a>
 
         <div class="method-heading">
-          <a href="#M000089" class="method-signature">
+          <a href="#M000094" class="method-signature">
           <span class="method-name">retrieve_by_id</span><span class="method-args">(id, parameters = {})</span>
           </a>
         </div>
@@ -240,10 +270,10 @@ id can be an int, string, or an array of either
 Maps to &#8217;/users/{id}&#8217;
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000089-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000089-source">
+            onclick="toggleCode('M000094-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000094-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/rubyoverflow/users.rb, line 35</span>
+<span class="ruby-comment cmt"># File lib/rubyoverflow/users.rb, line 37</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieve_by_id</span>(<span class="ruby-identifier">id</span>, <span class="ruby-identifier">parameters</span> = {})
         <span class="ruby-identifier">id</span> = <span class="ruby-identifier">convert_if_array</span>(<span class="ruby-identifier">id</span>)
         <span class="ruby-identifier">hash</span>,<span class="ruby-identifier">url</span> = <span class="ruby-identifier">request</span>(<span class="ruby-value str">'users/'</span><span class="ruby-operator">+</span><span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">parameters</span>)
@@ -254,11 +284,11 @@ Maps to &#8217;/users/{id}&#8217;
         </div>
       </div>
 
-      <div id="method-M000091" class="method-detail">
-        <a name="M000091"></a>
+      <div id="method-M000096" class="method-detail">
+        <a name="M000096"></a>
 
         <div class="method-heading">
-          <a href="#M000091" class="method-signature">
+          <a href="#M000096" class="method-signature">
           <span class="method-name">retrieve_moderators</span><span class="method-args">(parameters = {})</span>
           </a>
         </div>
@@ -271,12 +301,11 @@ Retrieves moderators for the current site the parameters provided
 Maps to &#8217;/users/moderators&#8216;
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000091-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000091-source">
+            onclick="toggleCode('M000096-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000096-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/rubyoverflow/users.rb, line 55</span>
+<span class="ruby-comment cmt"># File lib/rubyoverflow/users.rb, line 57</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieve_moderators</span>(<span class="ruby-identifier">parameters</span> = {})
-        <span class="ruby-identifier">id</span> = <span class="ruby-identifier">convert_if_array</span>(<span class="ruby-identifier">id</span>)
         <span class="ruby-identifier">hash</span>,<span class="ruby-identifier">url</span> = <span class="ruby-identifier">request</span>(<span class="ruby-value str">'users/moderators'</span>, <span class="ruby-identifier">parameters</span>)
         <span class="ruby-constant">Users</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">hash</span>, <span class="ruby-identifier">url</span>
       <span class="ruby-keyword kw">end</span>
@@ -287,11 +316,11 @@ Maps to &#8217;/users/moderators&#8216;
 
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000087" class="method-detail">
-        <a name="M000087"></a>
+      <div id="method-M000092" class="method-detail">
+        <a name="M000092"></a>
 
         <div class="method-heading">
-          <a href="#M000087" class="method-signature">
+          <a href="#M000092" class="method-signature">
           <span class="method-name">get_next_set</span><span class="method-args">()</span>
           </a>
         </div>
@@ -302,10 +331,10 @@ Retrieves the next set of users using the same parameters used to retrieve
 the current set
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000087-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000087-source">
+            onclick="toggleCode('M000092-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000092-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/rubyoverflow/users.rb, line 15</span>
+<span class="ruby-comment cmt"># File lib/rubyoverflow/users.rb, line 17</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_next_set</span>
       <span class="ruby-identifier">hash</span>,<span class="ruby-identifier">url</span> = <span class="ruby-identifier">perform_next_page_request</span>
       <span class="ruby-constant">Users</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">hash</span>,<span class="ruby-identifier">url</span>

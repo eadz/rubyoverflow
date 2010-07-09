@@ -65,7 +65,9 @@
         <tr class="top-aligned-row">
             <td><strong>Parent:</strong></td>
             <td>
-                Object
+                <a href="Base.html">
+                Base
+               </a>
             </td>
         </tr>
         </table>
@@ -86,10 +88,11 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000032">get_post</a>&nbsp;&nbsp;
-      <a href="#M000034">get_post_comment</a>&nbsp;&nbsp;
-      <a href="#M000033">get_post_revision</a>&nbsp;&nbsp;
-      <a href="#M000031">new</a>&nbsp;&nbsp;
+      <a href="#M000035">get_parent_question</a>&nbsp;&nbsp;
+      <a href="#M000034">get_post</a>&nbsp;&nbsp;
+      <a href="#M000037">get_post_comment</a>&nbsp;&nbsp;
+      <a href="#M000036">get_post_revision</a>&nbsp;&nbsp;
+      <a href="#M000033">new</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -150,6 +153,11 @@
           <td class="context-item-desc"></td>
         </tr>
         <tr class="top-aligned-row context-row">
+          <td class="context-item-name">question_id</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
           <td class="context-item-name">revision_guid</td>
           <td class="context-item-value">&nbsp;[R]&nbsp;</td>
           <td class="context-item-desc"></td>
@@ -174,27 +182,28 @@
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000031" class="method-detail">
-        <a name="M000031"></a>
+      <div id="method-M000033" class="method-detail">
+        <a name="M000033"></a>
 
         <div class="method-heading">
-          <a href="#M000031" class="method-signature">
+          <a href="#M000033" class="method-signature">
           <span class="method-name">new</span><span class="method-args">(hash, request_path = '')</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000031-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000031-source">
+            onclick="toggleCode('M000033-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000033-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/rubyoverflow/postTimelineEvent.rb, line 15</span>
+<span class="ruby-comment cmt"># File lib/rubyoverflow/postTimelineEvent.rb, line 16</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">hash</span>, <span class="ruby-identifier">request_path</span> = <span class="ruby-value str">''</span>)
       <span class="ruby-identifier">dash</span> = <span class="ruby-constant">PostTimelineEventDash</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">hash</span>
     
       <span class="ruby-ivar">@timeline_type</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">timeline_type</span>
       <span class="ruby-ivar">@post_id</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">post_id</span>
       <span class="ruby-ivar">@comment_id</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">comment_id</span>
+      <span class="ruby-ivar">@question_id</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">question_id</span>
       <span class="ruby-ivar">@revision_guid</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">revision_guid</span>
       <span class="ruby-ivar">@creation_date</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">creation_date</span>
       <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">user</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">user</span>
@@ -211,28 +220,27 @@
 
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000032" class="method-detail">
-        <a name="M000032"></a>
+      <div id="method-M000035" class="method-detail">
+        <a name="M000035"></a>
 
         <div class="method-heading">
-          <a href="#M000032" class="method-signature">
-          <span class="method-name">get_post</span><span class="method-args">(parameters={})</span>
+          <a href="#M000035" class="method-signature">
+          <span class="method-name">get_parent_question</span><span class="method-args">(parameters={})</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Gets the question associated with this postTimelineEvent
+Gets the question that this postTimleineEvent belongs to
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000032-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000032-source">
+            onclick="toggleCode('M000035-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000035-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/rubyoverflow/postTimelineEvent.rb, line 32</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_post</span>(<span class="ruby-identifier">parameters</span>={})
-      <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@post_url</span>
-        <span class="ruby-identifier">hash</span>,<span class="ruby-identifier">url</span> = <span class="ruby-identifier">request</span>(<span class="ruby-ivar">@post_url</span>, <span class="ruby-identifier">parameters</span>) 
-        <span class="ruby-constant">Questions</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">hash</span>, <span class="ruby-identifier">url</span> <span class="ruby-comment cmt">#since, for now, you can only get a timeline from a question, we return a question set</span>
+<span class="ruby-comment cmt"># File lib/rubyoverflow/postTimelineEvent.rb, line 48</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_parent_question</span>(<span class="ruby-identifier">parameters</span>={})
+      <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@question_id</span>
+        <span class="ruby-constant">Questions</span>.<span class="ruby-identifier">retrieve_by_id</span> <span class="ruby-ivar">@question_id</span>
       <span class="ruby-keyword kw">else</span>
         <span class="ruby-keyword kw">nil</span>
       <span class="ruby-keyword kw">end</span>
@@ -247,6 +255,41 @@ Gets the question associated with this postTimelineEvent
 
         <div class="method-heading">
           <a href="#M000034" class="method-signature">
+          <span class="method-name">get_post</span><span class="method-args">(parameters={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Gets the post associated with this postTimelineEvent
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000034-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000034-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/rubyoverflow/postTimelineEvent.rb, line 34</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_post</span>(<span class="ruby-identifier">parameters</span>={})
+      <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@post_url</span>
+        <span class="ruby-identifier">hash</span>,<span class="ruby-identifier">url</span> = <span class="ruby-identifier">request</span>(<span class="ruby-ivar">@post_url</span>, <span class="ruby-identifier">parameters</span>)
+        <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@post_url</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value str">'question'</span>
+          <span class="ruby-constant">Questions</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">hash</span>, <span class="ruby-identifier">url</span> 
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-ivar">@post_url</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value str">'answer'</span>
+          <span class="ruby-constant">Answers</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">hash</span>, <span class="ruby-identifier">url</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000037" class="method-detail">
+        <a name="M000037"></a>
+
+        <div class="method-heading">
+          <a href="#M000037" class="method-signature">
           <span class="method-name">get_post_comment</span><span class="method-args">(parameters={})</span>
           </a>
         </div>
@@ -256,10 +299,10 @@ Gets the question associated with this postTimelineEvent
 Gets the comment associated with this postTimelineEvent
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000034-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000034-source">
+            onclick="toggleCode('M000037-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000037-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/rubyoverflow/postTimelineEvent.rb, line 52</span>
+<span class="ruby-comment cmt"># File lib/rubyoverflow/postTimelineEvent.rb, line 68</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_post_comment</span>(<span class="ruby-identifier">parameters</span>={})
       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@post_comment_url</span>
         <span class="ruby-identifier">hash</span>,<span class="ruby-identifier">url</span> = <span class="ruby-identifier">request</span>(<span class="ruby-ivar">@post_comment_url</span>, <span class="ruby-identifier">parameters</span>) 
@@ -273,11 +316,11 @@ Gets the comment associated with this postTimelineEvent
         </div>
       </div>
 
-      <div id="method-M000033" class="method-detail">
-        <a name="M000033"></a>
+      <div id="method-M000036" class="method-detail">
+        <a name="M000036"></a>
 
         <div class="method-heading">
-          <a href="#M000033" class="method-signature">
+          <a href="#M000036" class="method-signature">
           <span class="method-name">get_post_revision</span><span class="method-args">(parameters={})</span>
           </a>
         </div>
@@ -287,10 +330,10 @@ Gets the comment associated with this postTimelineEvent
 Gets the revision associated with this postTimelineEvent
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000033-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000033-source">
+            onclick="toggleCode('M000036-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000036-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/rubyoverflow/postTimelineEvent.rb, line 42</span>
+<span class="ruby-comment cmt"># File lib/rubyoverflow/postTimelineEvent.rb, line 58</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_post_revision</span>(<span class="ruby-identifier">parameters</span>={})
       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@post_revision_url</span>
         <span class="ruby-identifier">hash</span>,<span class="ruby-identifier">url</span> = <span class="ruby-identifier">request</span>(<span class="ruby-ivar">@post_revision_url</span>, <span class="ruby-identifier">parameters</span>) 
