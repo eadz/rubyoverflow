@@ -1,3 +1,14 @@
+[1.0.0]
+Updated PostTimelineEvent to implement new property, question_id
+Updated get_post to properly handle the post being a question or answer
+Added get_parent_question to PostTimelineEvent
+
+[0.9.1]
+Switched from using Open-URI+GZIP+JSON to HTTParty
+
+[0.9.0]
+Updated API_VERSION to match the Stack Exchange API version
+
 [0.8.4]
 Added ApiSite and ApiSites as well as ApiSites.retrieve_sites to retrieve all API endpoints known to the Stack Exchange API
 Added the class method Users.retrieve_associated_accounts and the instance method User.retrieve_associated_accounts, which calls the Users.retrieve_associated_accounts method with the instance's associated_id
