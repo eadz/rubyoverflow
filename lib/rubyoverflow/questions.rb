@@ -46,8 +46,8 @@ module Rubyoverflow
       #Maps to '/questions/tagged/{tags}
       def retrieve_by_tag(tags, parameters = {})
         tags = convert_if_array(tags)
-      
-        hash, url = request('questions/tagged/' + tags.to_s, parameters)
+        parameters['tagged'] = tags
+        hash, url = request('questions/', parameters)
         Questions.new hash, url
       end
     
