@@ -35,6 +35,10 @@ module Rubyoverflow
       
         id
       end
+      
+      def change_end_point(endpoint)
+        client.change_end_point endpoint
+      end
     end
     
   end

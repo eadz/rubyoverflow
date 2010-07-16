@@ -1,10 +1,6 @@
 module Rubyoverflow
   class PagedBase < Base
-    attr_reader :total
-    attr_reader :pagesize
-    attr_reader :page
-    attr_reader :request_path
-    attr_reader :query_parameters
+    attr_reader :total, :pagesize, :page, :request_path, :query_parameters
   
     def initialize(dash, request_path)
       @total = dash.total
