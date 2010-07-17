@@ -22,6 +22,11 @@ module Rubyoverflow
       @badges_recipients_url = dash.badges_recipients_url
     end
     
+    def item_id
+      @badge_id
+    end
+    
+    
     #Retrieves all the users that have received the badge
     def get_recipients(parameters = {})
       if @badges_recipients_url

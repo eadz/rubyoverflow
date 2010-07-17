@@ -2,7 +2,9 @@ require 'helper'
 
 class TestStatistics < Test::Unit::TestCase
   describe "Statistics" do
-    
+    before(:all) do
+      set_api_key
+    end
     it "retrieve stats" do
       stats = Statistics.retrieve
       stats.should respond_to(:total_badges)

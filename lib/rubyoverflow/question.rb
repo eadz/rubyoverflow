@@ -1,32 +1,10 @@
 module Rubyoverflow
   class Question < Base
-    attr_reader :tags
-    attr_reader :answer_count
-    attr_reader :answers
-    attr_reader :accepted_answer_id
-    attr_reader :favorite_count
-    attr_reader :bounty_closes_date
-    attr_reader :bounty_amount
-    attr_reader :closed_date
-    attr_reader :closed_reason
-    attr_reader :question_timeline_url
-    attr_reader :question_comments_url
-    attr_reader :question_answers_url
-    attr_reader :question_id
-    attr_reader :locked_date
-    attr_reader :owner
-    attr_reader :creation_date
-    attr_reader :last_edit_date
-    attr_reader :last_activity_date
-    attr_reader :up_vote_count
-    attr_reader :down_vote_count
-    attr_reader :view_count
-    attr_reader :score
-    attr_reader :community_owned
-    attr_reader :title
-    attr_reader :body
-    attr_reader :comments
-    attr_reader :migrated
+    attr_reader :tags, :answer_count, :answers, :accepted_answer_id, :favorite_count, :bounty_closes_date,
+      :bounty_amount, :closed_date, :closed_reason, :question_timeline_url, :question_comments_url,
+      :question_answers_url, :question_id, :locked_date, :owner, :creation_date, :last_edit_date,
+      :last_activity_date, :up_vote_count, :down_vote_count, :view_count, :score, :community_owned,
+      :title, :body, :comments, :migrated, :protected_date
   
     def initialize(hash, request_path = '')
       dash = QuestionDash.new hash
@@ -63,6 +41,7 @@ module Rubyoverflow
       @community_owned = dash.community_owned
       @title = dash.title
       @body = dash.body
+      @protected_date = dash.protected_date
     end
     
     #Gets the comments made on the question
@@ -126,5 +105,6 @@ module Rubyoverflow
     property :body
     property :comments
     property :migrated
+    property :protected_date
   end
 end

@@ -81,7 +81,7 @@ module Rubyoverflow
     end
     
     def request(path, parameters)
-      parameters.merge! :key => @api_key if @api_key
+      parameters['key'] = @api_key if @api_key
       url = host_path + normalize(path) + query_string(parameters)
       response = self.class.get url
       return response.parsed_response, url

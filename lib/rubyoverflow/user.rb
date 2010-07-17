@@ -1,36 +1,11 @@
 module Rubyoverflow
   class User < Base
   
-    attr_reader :user_id
-    attr_reader :user_type
-    attr_reader :creation_date
-    attr_reader :display_name
-    attr_reader :reputation
-    attr_reader :email_hash
-    attr_reader :age
-    attr_reader :last_access_date
-    attr_reader :website_url
-    attr_reader :location
-    attr_reader :about_me
-    attr_reader :question_count
-    attr_reader :answer_count
-    attr_reader :view_count
-    attr_reader :up_vote_count
-    attr_reader :down_vote_count
-    attr_reader :accept_rate
-    attr_reader :user_questions_url
-    attr_reader :user_answers_url
-    attr_reader :user_favorites_url
-    attr_reader :user_tags_url
-    attr_reader :user_badges_url
-    attr_reader :user_timeline_url
-    attr_reader :user_mentioned_url
-    attr_reader :user_comments_url
-    attr_reader :user_reputation_url
-    attr_reader :badge_counts
-    attr_reader :timed_penalty_date
-    attr_reader :association_id
-    attr_reader :on_site
+    attr_reader :user_id, :user_type, :creation_date, :display_name, :reputation, :email_hash, :age,
+      :last_access_date, :website_url, :location, :about_me, :question_count, :answer_count, :view_count,
+      :up_vote_count, :down_vote_count, :accept_rate, :user_questions_url, :user_answers_url, :user_favorites_url,
+      :user_tags_url, :user_badges_url, :user_timeline_url, :user_mentioned_url, :user_comments_url,
+      :user_reputation_url, :badge_counts, :timed_penalty_date, :association_id, :on_site
   
     def initialize(hash, request_path = '')
       dash = UserDash.new hash
@@ -108,9 +83,9 @@ module Rubyoverflow
     end
     
     #Gets the badges awared to the user
-    def get_badges(parameters = {})
+    def get_badges
       if @user_badges_url
-        hash,url =request(@user_badges_url, parameters)
+        hash,url =request(@user_badges_url,{})
         Badges.new hash, url
       else
         nil
@@ -165,8 +140,6 @@ module Rubyoverflow
         nil
       end
     end
-    
-  
   end
 
   class UserDash < Hashie::Dash

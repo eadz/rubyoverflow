@@ -29,11 +29,19 @@ module Rubyoverflow
       end
     
       def convert_if_array(id)
+        new_id_list = Array.new
         if(id.kind_of?(Array))
-          id=id.join(';')
+          id.each do |item|
+            if item.respond_to? :item_id
+              new_id_list.push item.item_id
+            else
+              new_id_list.push item
+            end
+          end
+          return new_id_list.join(';')
+        else
+          return id
         end
-      
-        id
       end
       
       def change_end_point(endpoint)

@@ -11,7 +11,7 @@ module Rubyoverflow
     
       super(dash, request_path)
     end
-  
+    
     class <<self
       #Retrieves all badges in alphabetical order
       #
