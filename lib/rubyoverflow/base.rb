@@ -31,7 +31,7 @@ module Rubyoverflow
       def convert_to_id_list(id)
         id = convert_if_array(id)
         id = id.item_id if id.respond_to?(:item_id)
-        id
+        id.to_s
       end
       
       def convert_if_array(id)
@@ -40,7 +40,7 @@ module Rubyoverflow
           id.each do |item|
             if item.respond_to? :item_id
               new_id_list.push item.item_id
-            elsif id.kindof?(String) || id.kindof?(Int)
+            elsif item.kind_of?(String) || item.kind_of?(Integer)
               new_id_list.push item
             end
           end
