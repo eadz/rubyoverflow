@@ -24,7 +24,7 @@ module Rubyoverflow
       #
       #Maps to 'questions/{id}/timeline'
       def retrieve_by_question(id, parameters = {})
-        id = convert_if_array(id)
+        id = convert_to_id_list(id)
       
         hash, url = request('questions/' + id.to_s + '/timeline', parameters)
         PostTimelineEvents.new hash, url

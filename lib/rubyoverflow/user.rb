@@ -41,6 +41,10 @@ module Rubyoverflow
       @association_id = dash.association_id
       @on_site = ApiSite.new dash.on_site if dash.on_site
     end
+    
+    def item_id
+      @user_id
+    end
   
     #Gets the questions by the user
     def get_questions(parameters = {})

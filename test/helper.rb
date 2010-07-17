@@ -47,7 +47,7 @@ end
 
 def check_badge_set(badges)
   badges.should respond_to(:badges)
-  #check_badge badges.badges.first
+  check_badge badges.badges.first
 end
 
 def check_comment_set(comments, page_size = 1)
@@ -91,6 +91,18 @@ def check_question_set(questions, page_size = 1)
   questions.should respond_to(:questions)
   #check_question questions.questions.first
 end
+
+def check_badge(badge)
+  badge.should respond_to(:badge_id)
+  badge.should respond_to(:rank)
+  badge.should respond_to(:name)
+  badge.should respond_to(:description)
+  badge.should respond_to(:award_count)
+  badge.should respond_to(:tag_based)
+  badge.should respond_to(:user)
+  badge.should respond_to(:badges_recipients_url)
+end
+
 
 def check_user(user)
   user.should respond_to(:user_id)

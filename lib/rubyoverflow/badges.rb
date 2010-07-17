@@ -43,7 +43,7 @@ module Rubyoverflow
       #
       #Maps to '/users/{id}/badges'
       def retrieve_by_user(id)
-        id = convert_if_array(id)
+        id = convert_to_id_list(id)
       
         hash, url = request('users/'+id.to_s+'/badges')
         Badges.new hash, url

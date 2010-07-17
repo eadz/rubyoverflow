@@ -33,7 +33,7 @@ module Rubyoverflow
       #
       #Maps to '/questions/{id}'
       def retrieve_by_id(id, parameters = {})
-        id = convert_if_array(id)
+        id = convert_to_id_list(id)
       
         hash, url = request('questions/' + id.to_s, parameters)
         Questions.new hash, url
@@ -45,7 +45,7 @@ module Rubyoverflow
       #
       #Maps to '/questions/tagged/{tags}
       def retrieve_by_tag(tags, parameters = {})
-        tags = convert_if_array(tags)
+        tags = convert_to_id_list(tags)
         parameters['tagged'] = tags
         hash, url = request('questions/', parameters)
         Questions.new hash, url
@@ -65,7 +65,7 @@ module Rubyoverflow
       #
       #Maps to '/users/{id}/favorites
       def retrieve_favorites(user_id, parameters = {})
-        user_id = convert_if_array(user_id)
+        user_id = convert_to_id_list(user_id)
       
         hash, url = request('users/'+user_id.to_s+'/favorites', parameters)
         Questions.new hash, url
@@ -77,7 +77,7 @@ module Rubyoverflow
       #
       #Maps to '/users/{id}/questions'
       def retrieve_by_user(id, parameters = {})
-        id = convert_if_array(id)
+        id = convert_to_id_list(id)
       
         hash, url = request('users/'+id.to_s+'/questions', parameters)
         Questions.new hash, url

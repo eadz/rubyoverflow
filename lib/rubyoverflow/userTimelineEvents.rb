@@ -21,7 +21,7 @@ module Rubyoverflow
       #
       #Maps to 'users/{id}/timeline
       def retrieve_by_user(id, parameters = {})
-        id = convert_if_array(id)
+        id = convert_to_id_list(id)
         hash, url = request('users/' + id.to_s + '/timeline',parameters)
         UserTimelineEvents.new hash, url
       end

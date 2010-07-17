@@ -34,7 +34,7 @@ module Rubyoverflow
       #
       #Maps to '/users/{id}'
       def retrieve_by_id(id, parameters = {})
-        id = convert_if_array(id)
+        id = convert_to_id_list(id)
         hash,url = request('users/'+id.to_s, parameters)
         Users.new hash, url
       end
@@ -45,9 +45,7 @@ module Rubyoverflow
       #
       #Maps to '/badges/{id}'
       def retrieve_by_badge(id, parameters = {})
-        id = id.badge_id if id.kind_of? Badge
-        
-        id = convert_if_array(id)
+        id = convert_to_id_list(id)
         hash,url = request('badges/'+id.to_s, parameters)
         Users.new hash, url
       end

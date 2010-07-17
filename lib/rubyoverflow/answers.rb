@@ -25,7 +25,7 @@ module Rubyoverflow
       #
       #Maps to '/answers/{id}'
       def retrieve_by_id(id, parameters = {})
-        id = convert_if_array(id)
+        id = convert_to_id_list(id)
         hash,url = request('answers/'+id.to_s, parameters)
         Answers.new hash,url
       end
@@ -36,7 +36,7 @@ module Rubyoverflow
       #
       #Maps to 'users/{id}/answers'
       def retrieve_by_user(id, parameters={})
-        id = convert_if_array(id)
+        id = convert_to_id_list(id)
         hash, url = request('users/'+id.to_s+"/answers", parameters)
         Answers.new hash, url
       end
@@ -47,7 +47,7 @@ module Rubyoverflow
       #
       #Maps to 'questions/{id}/answers'
       def retrieve_by_question(id, parameters={})
-        id = convert_if_array(id)
+        id = convert_to_id_list(id)
         hash, url = request('questions/'+id.to_s+"/answers", parameters)
         Answers.new hash, url
       end

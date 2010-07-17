@@ -27,14 +27,20 @@ module Rubyoverflow
       def request(path, parameters = {})
         client.request(path, parameters)
       end
-    
+      
+      def convert_to_id_list(id)
+        id = convert_if_array(id)
+        id = id.item_id if id.respond_to?(:item_id)
+        id
+      end
+      
       def convert_if_array(id)
         new_id_list = Array.new
-        if(id.kind_of?(Array))
+        if id.kind_of?(Array)
           id.each do |item|
             if item.respond_to? :item_id
               new_id_list.push item.item_id
-            else
+            elsif id.kindof?(String) || id.kindof?(Int)
               new_id_list.push item
             end
           end
