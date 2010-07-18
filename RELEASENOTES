@@ -1,13 +1,18 @@
 [1.0.1]
 Minor formatting refactorings on most classes
 Setup tests with rspec
-Added Test for each api route method
 Updated Client.new to accept an ApiSite
 Added Styling class
 Added styling and state to ApiSite (was previously missing)
 Added change_end_point to Client and Base classes (accessible from any querying class)
 Removed display_name from Statistics
 Added site, total_accepted, and view_per_day from Statistics (was previously missing)
+Added tests for Answer and Answers
+Added tests for Base and got Base.convert_if_array working correctly
+Replaced convert_if_array to convert_to_id_list
+Added User#item_id
+Added tests for Badge and Badges
+Completed check_badge_set stub in test/helper
 
 
 [1.0.0]
