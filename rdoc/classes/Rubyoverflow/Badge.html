@@ -65,7 +65,9 @@
         <tr class="top-aligned-row">
             <td><strong>Parent:</strong></td>
             <td>
-                Object
+                <a href="Base.html">
+                Base
+               </a>
             </td>
         </tr>
         </table>
@@ -86,8 +88,9 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000052">get_recipients</a>&nbsp;&nbsp;
-      <a href="#M000051">new</a>&nbsp;&nbsp;
+      <a href="#M000056">get_recipients</a>&nbsp;&nbsp;
+      <a href="#M000055">item_id</a>&nbsp;&nbsp;
+      <a href="#M000054">new</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -157,21 +160,21 @@
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000051" class="method-detail">
-        <a name="M000051"></a>
+      <div id="method-M000054" class="method-detail">
+        <a name="M000054"></a>
 
         <div class="method-heading">
-          <a href="#M000051" class="method-signature">
+          <a href="#M000054" class="method-signature">
           <span class="method-name">new</span><span class="method-args">(hash, request_path = '')</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000051-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000051-source">
+            onclick="toggleCode('M000054-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000054-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/rubyoverflow/badge.rb, line 12</span>
+<span class="ruby-comment cmt"># File lib/rubyoverflow/badge.rb, line 5</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">hash</span>, <span class="ruby-identifier">request_path</span> = <span class="ruby-value str">''</span>)
       <span class="ruby-identifier">dash</span> = <span class="ruby-constant">BadgeDash</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">hash</span>
     
@@ -191,11 +194,11 @@
 
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000052" class="method-detail">
-        <a name="M000052"></a>
+      <div id="method-M000056" class="method-detail">
+        <a name="M000056"></a>
 
         <div class="method-heading">
-          <a href="#M000052" class="method-signature">
+          <a href="#M000056" class="method-signature">
           <span class="method-name">get_recipients</span><span class="method-args">(parameters = {})</span>
           </a>
         </div>
@@ -205,10 +208,10 @@
 Retrieves all the users that have received the badge
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000052-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000052-source">
+            onclick="toggleCode('M000056-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000056-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/rubyoverflow/badge.rb, line 26</span>
+<span class="ruby-comment cmt"># File lib/rubyoverflow/badge.rb, line 23</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_recipients</span>(<span class="ruby-identifier">parameters</span> = {})
       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@badges_recipients_url</span>
         <span class="ruby-identifier">hash</span>,<span class="ruby-identifier">url</span> =<span class="ruby-identifier">request</span>(<span class="ruby-ivar">@badges_recipients_url</span>, <span class="ruby-identifier">parameters</span>)
@@ -216,6 +219,29 @@ Retrieves all the users that have received the badge
       <span class="ruby-keyword kw">else</span>
         <span class="ruby-keyword kw">nil</span>
       <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000055" class="method-detail">
+        <a name="M000055"></a>
+
+        <div class="method-heading">
+          <a href="#M000055" class="method-signature">
+          <span class="method-name">item_id</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000055-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000055-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/rubyoverflow/badge.rb, line 18</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">item_id</span>
+      <span class="ruby-ivar">@badge_id</span>
     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>

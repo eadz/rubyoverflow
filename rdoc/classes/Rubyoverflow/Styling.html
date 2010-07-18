@@ -5,7 +5,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Class: Rubyoverflow::Tag</title>
+  <title>Class: Rubyoverflow::Styling</title>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <meta http-equiv="Content-Script-Type" content="text/javascript" />
   <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
@@ -50,13 +50,13 @@
         <table class="header-table">
         <tr class="top-aligned-row">
           <td><strong>Class</strong></td>
-          <td class="class-name-in-header">Rubyoverflow::Tag</td>
+          <td class="class-name-in-header">Rubyoverflow::Styling</td>
         </tr>
         <tr class="top-aligned-row">
             <td><strong>In:</strong></td>
             <td>
-                <a href="../../files/lib/rubyoverflow/tag_rb.html">
-                lib/rubyoverflow/tag.rb
+                <a href="../../files/lib/rubyoverflow/styling_rb.html">
+                lib/rubyoverflow/styling.rb
                 </a>
         <br />
             </td>
@@ -86,7 +86,7 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000040">new</a>&nbsp;&nbsp;
+      <a href="#M000053">new</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -107,27 +107,17 @@
       <div class="name-list">
         <table>
         <tr class="top-aligned-row context-row">
-          <td class="context-item-name">count</td>
+          <td class="context-item-name">link_color</td>
           <td class="context-item-value">&nbsp;[R]&nbsp;</td>
           <td class="context-item-desc"></td>
         </tr>
         <tr class="top-aligned-row context-row">
-          <td class="context-item-name">fulfills_required</td>
+          <td class="context-item-name">tag_background_color</td>
           <td class="context-item-value">&nbsp;[R]&nbsp;</td>
           <td class="context-item-desc"></td>
         </tr>
         <tr class="top-aligned-row context-row">
-          <td class="context-item-name">name</td>
-          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
-          <td class="context-item-desc"></td>
-        </tr>
-        <tr class="top-aligned-row context-row">
-          <td class="context-item-name">restricted_to</td>
-          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
-          <td class="context-item-desc"></td>
-        </tr>
-        <tr class="top-aligned-row context-row">
-          <td class="context-item-name">user_id</td>
+          <td class="context-item-name">tag_foreground_color</td>
           <td class="context-item-value">&nbsp;[R]&nbsp;</td>
           <td class="context-item-desc"></td>
         </tr>
@@ -141,28 +131,26 @@
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000040" class="method-detail">
-        <a name="M000040"></a>
+      <div id="method-M000053" class="method-detail">
+        <a name="M000053"></a>
 
         <div class="method-heading">
-          <a href="#M000040" class="method-signature">
-          <span class="method-name">new</span><span class="method-args">(hash, request_path = '')</span>
+          <a href="#M000053" class="method-signature">
+          <span class="method-name">new</span><span class="method-args">(hash)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000040-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000040-source">
+            onclick="toggleCode('M000053-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000053-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/rubyoverflow/tag.rb, line 9</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">hash</span>, <span class="ruby-identifier">request_path</span> = <span class="ruby-value str">''</span>)
-      <span class="ruby-identifier">dash</span> = <span class="ruby-constant">TagDash</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">hash</span>
-      <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">name</span>
-      <span class="ruby-ivar">@count</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">count</span>
-      <span class="ruby-ivar">@restricted_to</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">restricted_to</span>
-      <span class="ruby-ivar">@fulfills_required</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">fulfills_required</span>
-      <span class="ruby-ivar">@user_id</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">user_id</span>
+<span class="ruby-comment cmt"># File lib/rubyoverflow/styling.rb, line 5</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">hash</span>)
+      <span class="ruby-identifier">dash</span> = <span class="ruby-constant">StylingDash</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">hash</span>
+      <span class="ruby-ivar">@link_color</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">link_color</span>
+      <span class="ruby-ivar">@tag_background_color</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">tag_background_color</span>
+      <span class="ruby-ivar">@tag_foreground_color</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">tag_foreground_color</span>
     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>

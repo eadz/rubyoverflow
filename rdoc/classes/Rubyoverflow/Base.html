@@ -86,11 +86,13 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000072">client</a>&nbsp;&nbsp;
-      <a href="#M000074">convert_if_array</a>&nbsp;&nbsp;
-      <a href="#M000071">find_parse_querystring</a>&nbsp;&nbsp;
-      <a href="#M000073">request</a>&nbsp;&nbsp;
-      <a href="#M000070">request</a>&nbsp;&nbsp;
+      <a href="#M000080">change_end_point</a>&nbsp;&nbsp;
+      <a href="#M000076">client</a>&nbsp;&nbsp;
+      <a href="#M000079">convert_if_array</a>&nbsp;&nbsp;
+      <a href="#M000078">convert_to_id_list</a>&nbsp;&nbsp;
+      <a href="#M000075">find_parse_querystring</a>&nbsp;&nbsp;
+      <a href="#M000077">request</a>&nbsp;&nbsp;
+      <a href="#M000074">request</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -112,19 +114,42 @@
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000072" class="method-detail">
-        <a name="M000072"></a>
+      <div id="method-M000080" class="method-detail">
+        <a name="M000080"></a>
 
         <div class="method-heading">
-          <a href="#M000072" class="method-signature">
+          <a href="#M000080" class="method-signature">
+          <span class="method-name">change_end_point</span><span class="method-args">(endpoint)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000080-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000080-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/rubyoverflow/base.rb, line 53</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">change_end_point</span>(<span class="ruby-identifier">endpoint</span>)
+        <span class="ruby-identifier">client</span>.<span class="ruby-identifier">change_end_point</span> <span class="ruby-identifier">endpoint</span>
+      <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000076" class="method-detail">
+        <a name="M000076"></a>
+
+        <div class="method-heading">
+          <a href="#M000076" class="method-signature">
           <span class="method-name">client</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000072-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000072-source">
+            onclick="toggleCode('M000076-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000076-source">
 <pre>
 <span class="ruby-comment cmt"># File lib/rubyoverflow/base.rb, line 23</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">client</span> 
@@ -135,46 +160,79 @@
         </div>
       </div>
 
-      <div id="method-M000074" class="method-detail">
-        <a name="M000074"></a>
+      <div id="method-M000079" class="method-detail">
+        <a name="M000079"></a>
 
         <div class="method-heading">
-          <a href="#M000074" class="method-signature">
+          <a href="#M000079" class="method-signature">
           <span class="method-name">convert_if_array</span><span class="method-args">(id)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000074-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000074-source">
+            onclick="toggleCode('M000079-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000079-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/rubyoverflow/base.rb, line 31</span>
+<span class="ruby-comment cmt"># File lib/rubyoverflow/base.rb, line 37</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">convert_if_array</span>(<span class="ruby-identifier">id</span>)
-        <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">id</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Array</span>))
-          <span class="ruby-identifier">id</span>=<span class="ruby-identifier">id</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">';'</span>)
+        <span class="ruby-identifier">new_id_list</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">id</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Array</span>)
+          <span class="ruby-identifier">id</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">respond_to?</span> <span class="ruby-identifier">:item_id</span>
+              <span class="ruby-identifier">new_id_list</span>.<span class="ruby-identifier">push</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">item_id</span>
+            <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">String</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Integer</span>)
+              <span class="ruby-identifier">new_id_list</span>.<span class="ruby-identifier">push</span> <span class="ruby-identifier">item</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">new_id_list</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">';'</span>)
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">id</span>
         <span class="ruby-keyword kw">end</span>
-      
-        <span class="ruby-identifier">id</span>
       <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000073" class="method-detail">
-        <a name="M000073"></a>
+      <div id="method-M000078" class="method-detail">
+        <a name="M000078"></a>
 
         <div class="method-heading">
-          <a href="#M000073" class="method-signature">
+          <a href="#M000078" class="method-signature">
+          <span class="method-name">convert_to_id_list</span><span class="method-args">(id)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000078-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000078-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/rubyoverflow/base.rb, line 31</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">convert_to_id_list</span>(<span class="ruby-identifier">id</span>)
+        <span class="ruby-identifier">id</span> = <span class="ruby-identifier">convert_if_array</span>(<span class="ruby-identifier">id</span>)
+        <span class="ruby-identifier">id</span> = <span class="ruby-identifier">id</span>.<span class="ruby-identifier">item_id</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">id</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:item_id</span>)
+        <span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>
+      <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000077" class="method-detail">
+        <a name="M000077"></a>
+
+        <div class="method-heading">
+          <a href="#M000077" class="method-signature">
           <span class="method-name">request</span><span class="method-args">(path, parameters = {})</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000073-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000073-source">
+            onclick="toggleCode('M000077-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000077-source">
 <pre>
 <span class="ruby-comment cmt"># File lib/rubyoverflow/base.rb, line 27</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">request</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">parameters</span> = {})
@@ -187,19 +245,19 @@
 
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000071" class="method-detail">
-        <a name="M000071"></a>
+      <div id="method-M000075" class="method-detail">
+        <a name="M000075"></a>
 
         <div class="method-heading">
-          <a href="#M000071" class="method-signature">
+          <a href="#M000075" class="method-signature">
           <span class="method-name">find_parse_querystring</span><span class="method-args">(rawurl)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000071-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000071-source">
+            onclick="toggleCode('M000075-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000075-source">
 <pre>
 <span class="ruby-comment cmt"># File lib/rubyoverflow/base.rb, line 8</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find_parse_querystring</span>(<span class="ruby-identifier">rawurl</span>)
@@ -220,19 +278,19 @@
         </div>
       </div>
 
-      <div id="method-M000070" class="method-detail">
-        <a name="M000070"></a>
+      <div id="method-M000074" class="method-detail">
+        <a name="M000074"></a>
 
         <div class="method-heading">
-          <a href="#M000070" class="method-signature">
+          <a href="#M000074" class="method-signature">
           <span class="method-name">request</span><span class="method-args">(path, parameters = {})</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000070-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000070-source">
+            onclick="toggleCode('M000074-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000074-source">
 <pre>
 <span class="ruby-comment cmt"># File lib/rubyoverflow/base.rb, line 4</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">request</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">parameters</span> = {})

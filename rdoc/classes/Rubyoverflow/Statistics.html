@@ -88,8 +88,8 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000075">new</a>&nbsp;&nbsp;
-      <a href="#M000076">retrieve</a>&nbsp;&nbsp;
+      <a href="#M000081">new</a>&nbsp;&nbsp;
+      <a href="#M000082">retrieve</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -125,12 +125,17 @@
           <td class="context-item-desc"></td>
         </tr>
         <tr class="top-aligned-row context-row">
-          <td class="context-item-name">display_name</td>
+          <td class="context-item-name">questions_per_minute</td>
           <td class="context-item-value">&nbsp;[R]&nbsp;</td>
           <td class="context-item-desc"></td>
         </tr>
         <tr class="top-aligned-row context-row">
-          <td class="context-item-name">questions_per_minute</td>
+          <td class="context-item-name">site</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">total_accepted</td>
           <td class="context-item-value">&nbsp;[R]&nbsp;</td>
           <td class="context-item-desc"></td>
         </tr>
@@ -169,6 +174,11 @@
           <td class="context-item-value">&nbsp;[R]&nbsp;</td>
           <td class="context-item-desc"></td>
         </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">views_per_day</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
         </table>
       </div>
     </div>
@@ -179,25 +189,26 @@
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000075" class="method-detail">
-        <a name="M000075"></a>
+      <div id="method-M000081" class="method-detail">
+        <a name="M000081"></a>
 
         <div class="method-heading">
-          <a href="#M000075" class="method-signature">
+          <a href="#M000081" class="method-signature">
           <span class="method-name">new</span><span class="method-args">(hash, request_path = '')</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000075-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000075-source">
+            onclick="toggleCode('M000081-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000081-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/rubyoverflow/statistics.rb, line 17</span>
+<span class="ruby-comment cmt"># File lib/rubyoverflow/statistics.rb, line 7</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">hash</span>, <span class="ruby-identifier">request_path</span> = <span class="ruby-value str">''</span>)
       <span class="ruby-identifier">dash</span> = <span class="ruby-constant">StatisticsDash</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">hash</span>
     
       <span class="ruby-ivar">@total_questions</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">total_questions</span>
+      <span class="ruby-ivar">@total_accepted</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">total_accepted</span>
       <span class="ruby-ivar">@total_badges</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">total_badges</span>
       <span class="ruby-ivar">@total_unanswered</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">total_unanswered</span>
       <span class="ruby-ivar">@total_votes</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">total_votes</span>
@@ -207,7 +218,8 @@
       <span class="ruby-ivar">@questions_per_minute</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">questions_per_minute</span>
       <span class="ruby-ivar">@answers_per_minute</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">answers_per_minute</span>
       <span class="ruby-ivar">@badges_per_minute</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">badges_per_minute</span>
-      <span class="ruby-ivar">@display_name</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">display_name</span>
+      <span class="ruby-ivar">@views_per_day</span> = <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">views_per_day</span>
+      <span class="ruby-ivar">@site</span> = <span class="ruby-constant">ApiSite</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">site</span>
       <span class="ruby-ivar">@api_version</span> = <span class="ruby-constant">ApiVersion</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">dash</span>.<span class="ruby-identifier">api_version</span>
     <span class="ruby-keyword kw">end</span>
 </pre>
@@ -215,11 +227,11 @@
         </div>
       </div>
 
-      <div id="method-M000076" class="method-detail">
-        <a name="M000076"></a>
+      <div id="method-M000082" class="method-detail">
+        <a name="M000082"></a>
 
         <div class="method-heading">
-          <a href="#M000076" class="method-signature">
+          <a href="#M000082" class="method-signature">
           <span class="method-name">retrieve</span><span class="method-args">()</span>
           </a>
         </div>
@@ -232,10 +244,10 @@ Retrieves the stats for the domain
 Maps to &#8216;stats&#8216;
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000076-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000076-source">
+            onclick="toggleCode('M000082-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000082-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/rubyoverflow/statistics.rb, line 40</span>
+<span class="ruby-comment cmt"># File lib/rubyoverflow/statistics.rb, line 32</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieve</span>
         <span class="ruby-identifier">hash</span>, <span class="ruby-identifier">url</span> = <span class="ruby-identifier">request</span>(<span class="ruby-value str">'stats'</span>)
         <span class="ruby-constant">Statistics</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'statistics'</span>].<span class="ruby-identifier">first</span>, <span class="ruby-identifier">url</span>

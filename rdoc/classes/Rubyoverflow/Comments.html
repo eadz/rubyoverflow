@@ -184,7 +184,7 @@ Maps to &#8216;answers/{id}/comments&#8216;
 <pre>
 <span class="ruby-comment cmt"># File lib/rubyoverflow/comments.rb, line 52</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieve_by_answer</span>(<span class="ruby-identifier">id</span>, <span class="ruby-identifier">parameters</span>={})
-        <span class="ruby-identifier">id</span> = <span class="ruby-identifier">convert_if_array</span>(<span class="ruby-identifier">id</span>)
+        <span class="ruby-identifier">id</span> = <span class="ruby-identifier">convert_to_id_list</span>(<span class="ruby-identifier">id</span>)
       
         <span class="ruby-identifier">hash</span>, <span class="ruby-identifier">url</span> = <span class="ruby-identifier">request</span>(<span class="ruby-value str">'answers/'</span><span class="ruby-operator">+</span><span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot;/comments&quot;</span>, <span class="ruby-identifier">parameters</span>)
         <span class="ruby-constant">Comments</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">hash</span>, <span class="ruby-identifier">url</span>
@@ -219,7 +219,7 @@ Maps to &#8216;comments/{id}
 <pre>
 <span class="ruby-comment cmt"># File lib/rubyoverflow/comments.rb, line 28</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieve_by_id</span>(<span class="ruby-identifier">id</span>, <span class="ruby-identifier">parameters</span> = {})
-        <span class="ruby-identifier">id</span> = <span class="ruby-identifier">convert_if_array</span>(<span class="ruby-identifier">id</span>)
+        <span class="ruby-identifier">id</span> = <span class="ruby-identifier">convert_to_id_list</span>(<span class="ruby-identifier">id</span>)
       
         <span class="ruby-identifier">hash</span>, <span class="ruby-identifier">url</span> = <span class="ruby-identifier">request</span>(<span class="ruby-value str">'comments/'</span><span class="ruby-operator">+</span><span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">parameters</span>)
         <span class="ruby-constant">Comments</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">hash</span>, <span class="ruby-identifier">url</span>
@@ -254,7 +254,7 @@ Maps to &#8216;posts/{id}/comments&#8216;
 <pre>
 <span class="ruby-comment cmt"># File lib/rubyoverflow/comments.rb, line 64</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieve_by_post</span>(<span class="ruby-identifier">id</span>, <span class="ruby-identifier">parameters</span>={})
-        <span class="ruby-identifier">id</span> = <span class="ruby-identifier">convert_if_array</span>(<span class="ruby-identifier">id</span>)
+        <span class="ruby-identifier">id</span> = <span class="ruby-identifier">convert_to_id_list</span>(<span class="ruby-identifier">id</span>)
       
         <span class="ruby-identifier">hash</span>, <span class="ruby-identifier">url</span> = <span class="ruby-identifier">request</span>(<span class="ruby-value str">'posts/'</span><span class="ruby-operator">+</span><span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot;/comments&quot;</span>, <span class="ruby-identifier">parameters</span>)
         <span class="ruby-constant">Comments</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">hash</span>, <span class="ruby-identifier">url</span>
@@ -289,7 +289,7 @@ Maps to &#8216;question/{id}/comments&#8216;
 <pre>
 <span class="ruby-comment cmt"># File lib/rubyoverflow/comments.rb, line 76</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieve_by_question</span>(<span class="ruby-identifier">id</span>, <span class="ruby-identifier">parameters</span>={})
-        <span class="ruby-identifier">id</span> = <span class="ruby-identifier">convert_if_array</span>(<span class="ruby-identifier">id</span>)
+        <span class="ruby-identifier">id</span> = <span class="ruby-identifier">convert_to_id_list</span>(<span class="ruby-identifier">id</span>)
       
         <span class="ruby-identifier">hash</span>, <span class="ruby-identifier">url</span> = <span class="ruby-identifier">request</span>(<span class="ruby-value str">'questions/'</span><span class="ruby-operator">+</span><span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot;/comments&quot;</span>, <span class="ruby-identifier">parameters</span>)
         <span class="ruby-constant">Comments</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">hash</span>, <span class="ruby-identifier">url</span>
@@ -324,7 +324,7 @@ Maps to &#8216;users/{id}/comments&#8216;
 <pre>
 <span class="ruby-comment cmt"># File lib/rubyoverflow/comments.rb, line 40</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieve_by_user</span>(<span class="ruby-identifier">id</span>, <span class="ruby-identifier">parameters</span>={})
-        <span class="ruby-identifier">id</span> = <span class="ruby-identifier">convert_if_array</span>(<span class="ruby-identifier">id</span>)
+        <span class="ruby-identifier">id</span> = <span class="ruby-identifier">convert_to_id_list</span>(<span class="ruby-identifier">id</span>)
       
         <span class="ruby-identifier">hash</span>, <span class="ruby-identifier">url</span> = <span class="ruby-identifier">request</span>(<span class="ruby-value str">'users/'</span><span class="ruby-operator">+</span><span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot;/comments&quot;</span>, <span class="ruby-identifier">parameters</span>)
         <span class="ruby-constant">Comments</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">hash</span>, <span class="ruby-identifier">url</span>
@@ -362,7 +362,7 @@ Maps to &#8216;users/{id}/comments/{toid}&#8217;
 <pre>
 <span class="ruby-comment cmt"># File lib/rubyoverflow/comments.rb, line 90</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieve_from_user_to_user</span>(<span class="ruby-identifier">id</span>, <span class="ruby-identifier">toid</span>, <span class="ruby-identifier">parameters</span>={})
-        <span class="ruby-identifier">id</span> = <span class="ruby-identifier">convert_if_array</span>(<span class="ruby-identifier">id</span>)
+        <span class="ruby-identifier">id</span> = <span class="ruby-identifier">convert_to_id_list</span>(<span class="ruby-identifier">id</span>)
       
         <span class="ruby-identifier">hash</span>, <span class="ruby-identifier">url</span> = <span class="ruby-identifier">request</span>(<span class="ruby-value str">'users/'</span><span class="ruby-operator">+</span><span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot;/comments/&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">toid</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">parameters</span>)
         <span class="ruby-constant">Comments</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">hash</span>, <span class="ruby-identifier">url</span>
@@ -397,7 +397,7 @@ Maps to &#8216;users/{id}/mentioned&#8216;
 <pre>
 <span class="ruby-comment cmt"># File lib/rubyoverflow/comments.rb, line 102</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">retrieve_to_user</span>(<span class="ruby-identifier">id</span>, <span class="ruby-identifier">parameters</span>={})
-        <span class="ruby-identifier">id</span> = <span class="ruby-identifier">convert_if_array</span>(<span class="ruby-identifier">id</span>)
+        <span class="ruby-identifier">id</span> = <span class="ruby-identifier">convert_to_id_list</span>(<span class="ruby-identifier">id</span>)
       
         <span class="ruby-identifier">hash</span>, <span class="ruby-identifier">url</span> = <span class="ruby-identifier">request</span>(<span class="ruby-value str">'users/'</span><span class="ruby-operator">+</span><span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot;/mentioned&quot;</span>, <span class="ruby-identifier">parameters</span>)
         <span class="ruby-constant">Comments</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">hash</span>, <span class="ruby-identifier">url</span>
