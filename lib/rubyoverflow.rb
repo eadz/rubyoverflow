@@ -42,6 +42,8 @@ require 'rubyoverflow/revisions'
 
 require 'rubyoverflow/errors'
 
+require 'rubyoverflow/styling'
+
 require 'rubyoverflow/apiSite'
 require 'rubyoverflow/apiSites'
 
@@ -59,13 +61,27 @@ module Rubyoverflow
     attr_reader :api_key
     
     def initialize(options = OpenStruct.new)
-      @host = options.host || HOST
-      @version = options.version || VERSION
-      @api_key = options.api_key
+      if options.kind_of? OpenStruct
+        @host = options.host || HOST
+        @version = options.version || VERSION
+        @api_key = options.api_key
+      end
+      
+     
+    end
+    
+    def change_end_point(val = nil)
+      if val.kind_of? ApiSite
+        @host = val.api_endpoint
+      end
+      
+      if val.kind_of? String
+        @host = val
+      end
     end
     
     def request(path, parameters)
-      parameters.merge! :key => @api_key if @api_key
+      parameters['key'] = @api_key if @api_key
       url = host_path + normalize(path) + query_string(parameters)
       response = self.class.get url
       return response.parsed_response, url
@@ -95,7 +111,7 @@ module Rubyoverflow
       def stackauth_client(api_key = '')
         options = OpenStruct.new
         options.host = 'http://stackauth.com/'
-        options.api_key = api_key
+        options.api_key = api_key if api_key
         Client.new options
       end
     end

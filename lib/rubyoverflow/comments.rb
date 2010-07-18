@@ -26,7 +26,7 @@ module Rubyoverflow
       #
       #Maps to 'comments/{id}
       def retrieve_by_id(id, parameters = {})
-        id = convert_if_array(id)
+        id = convert_to_id_list(id)
       
         hash, url = request('comments/'+id.to_s, parameters)
         Comments.new hash, url
@@ -38,7 +38,7 @@ module Rubyoverflow
       #
       #Maps to 'users/{id}/comments'
       def retrieve_by_user(id, parameters={})
-        id = convert_if_array(id)
+        id = convert_to_id_list(id)
       
         hash, url = request('users/'+id.to_s+"/comments", parameters)
         Comments.new hash, url
@@ -50,7 +50,7 @@ module Rubyoverflow
       #
       #Maps to 'answers/{id}/comments'
       def retrieve_by_answer(id, parameters={})
-        id = convert_if_array(id)
+        id = convert_to_id_list(id)
       
         hash, url = request('answers/'+id.to_s+"/comments", parameters)
         Comments.new hash, url
@@ -62,7 +62,7 @@ module Rubyoverflow
       #
       #Maps to 'posts/{id}/comments'
       def retrieve_by_post(id, parameters={})
-        id = convert_if_array(id)
+        id = convert_to_id_list(id)
       
         hash, url = request('posts/'+id.to_s+"/comments", parameters)
         Comments.new hash, url
@@ -74,7 +74,7 @@ module Rubyoverflow
       #
       #Maps to 'question/{id}/comments'
       def retrieve_by_question(id, parameters={})
-        id = convert_if_array(id)
+        id = convert_to_id_list(id)
       
         hash, url = request('questions/'+id.to_s+"/comments", parameters)
         Comments.new hash, url
@@ -88,7 +88,7 @@ module Rubyoverflow
       #
       #Maps to 'users/{id}/comments/{toid}'
       def retrieve_from_user_to_user(id, toid, parameters={})
-        id = convert_if_array(id)
+        id = convert_to_id_list(id)
       
         hash, url = request('users/'+id.to_s+"/comments/" + toid.to_s, parameters)
         Comments.new hash, url
@@ -100,7 +100,7 @@ module Rubyoverflow
       #
       #Maps to 'users/{id}/mentioned'
       def retrieve_to_user(id, parameters={})
-        id = convert_if_array(id)
+        id = convert_to_id_list(id)
       
         hash, url = request('users/'+id.to_s+"/mentioned", parameters)
         Comments.new hash, url

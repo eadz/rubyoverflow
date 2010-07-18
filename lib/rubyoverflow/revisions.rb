@@ -24,7 +24,7 @@ module Rubyoverflow
       #
       #Maps to 'revisions/{id}'
       def retrieve_by_post(id, parameters = {})
-        id = convert_if_array(id)
+        id = convert_to_id_list(id)
         hash, url = request('/revisions/'+id.to_s, parameters)
         Revisions.new hash, url
       end
@@ -37,7 +37,7 @@ module Rubyoverflow
       #
       #Maps to 'revisions/{id}'
       def retrieve_post_revision(id, revisionguid, parameters = {})
-        id = convert_if_array(id)
+        id = convert_to_id_list(id)
         hash, url = request('/revisions/'+id.to_s + '/' + revisionguid, parameters)
         Revisions.new hash, url
       end

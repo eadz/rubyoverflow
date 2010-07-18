@@ -1,22 +1,8 @@
 module Rubyoverflow
   class Answer < Base
-    attr_reader :answer_id
-    attr_reader :accepted
-    attr_reader :answer_comments_url
-    attr_reader :question_id
-    attr_reader :locked_date
-    attr_reader :owner
-    attr_reader :creation_date
-    attr_reader :last_edit_date
-    attr_reader :last_activity_date
-    attr_reader :up_vote_count
-    attr_reader :down_vote_count
-    attr_reader :view_count
-    attr_reader :score
-    attr_reader :community_owned
-    attr_reader :title
-    attr_reader :body
-    attr_reader :comments
+    attr_reader :answer_id, :accepted, :answer_comments_url, :question_id, :locked_date, :owner,
+      :creation_date, :last_edit_date, :last_activity_date, :up_vote_count, :down_vote_count,
+      :view_count, :score, :community_owned, :title, :body, :comments
   
     def initialize(hash, request_path = '')
       dash = AnswerDash.new hash

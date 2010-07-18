@@ -1,6 +1,5 @@
 module Rubyoverflow
   class Users < PagedBase
-  
     attr_reader :users
   
     def initialize(hash, request_path = '')
@@ -35,18 +34,18 @@ module Rubyoverflow
       #
       #Maps to '/users/{id}'
       def retrieve_by_id(id, parameters = {})
-        id = convert_if_array(id)
+        id = convert_to_id_list(id)
         hash,url = request('users/'+id.to_s, parameters)
         Users.new hash, url
       end
     
       #Retrieves users that have received badge(s) by badge id(s) using the parameters provided
       #
-      #id can be an int, string, or an array of either
+      #id can be an int, string, badge or an array of any of the three
       #
       #Maps to '/badges/{id}'
       def retrieve_by_badge(id, parameters = {})
-        id = convert_if_array(id)
+        id = convert_to_id_list(id)
         hash,url = request('badges/'+id.to_s, parameters)
         Users.new hash, url
       end
@@ -61,16 +60,10 @@ module Rubyoverflow
       
       def retrieve_associated_accounts(guid)
         client = Client.stackauth_client(Base.client.api_key)
-
         hash,url = client.request('users/' + guid +'/associated',{})
-        
         Users.new hash,url
       end
-      
-      
     end
-  
-
   end
 
   class UsersDash < PagedDash

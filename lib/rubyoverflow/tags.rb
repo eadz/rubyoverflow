@@ -32,7 +32,7 @@ module Rubyoverflow
       #
       #Maps to 'users/{id}/tags'
       def retrieve_by_user(id, parameters = {})
-        id = convert_if_array(id)
+        id = convert_to_id_list(id)
         hash, url = request('users/'+id.to_s+'/tags',parameters)
         Tags.new hash, url
       end

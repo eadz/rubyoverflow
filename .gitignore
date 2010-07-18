@@ -1,6 +1,5 @@
-## MAC OS
-.DS_Store
-
+testing.rb
+*apiKey.rb
 ## TEXTMATE
 *.tmproj
 tmtags

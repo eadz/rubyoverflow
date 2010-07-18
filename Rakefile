@@ -12,7 +12,7 @@ begin
     gem.authors = ["phsr"]
     gem.add_dependency 'httparty', '>=0'
     gem.add_dependency 'hashie', '>=0'
-    gem.add_development_dependency "shoulda", ">= 0"
+    gem.add_development_dependency "rspec", ">= 0"
     gem.files.include FileList['lib/**/*.rb', 'bin/*', '[A-Z]*', 'test/**/*'].to_a
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
@@ -21,11 +21,10 @@ rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
 end
 
-require 'rake/testtask'
-Rake::TestTask.new(:test) do |test|
-  test.libs << 'lib' << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
+require 'spec/rake/spectask'
+Spec::Rake::SpecTask.new(:spec) do |t|
+  t.libs << 'lib' << 'test'
+  t.spec_files = FileList['test/**/test_*.rb']
 end
 
 begin
@@ -41,7 +40,7 @@ rescue LoadError
   end
 end
 
-task :test => :check_dependencies
+task :test => :spec
 
 task :default => :test
 

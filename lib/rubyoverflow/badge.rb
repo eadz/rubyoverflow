@@ -1,13 +1,6 @@
 module Rubyoverflow
-  class Badge
-    attr_reader :badge_id
-    attr_reader :rank
-    attr_reader :name
-    attr_reader :description
-    attr_reader :award_count
-    attr_reader :tag_based
-    attr_reader :user
-    attr_reader :badges_recipients_url
+  class Badge < Base
+    attr_reader :badge_id, :rank, :name, :description, :award_count, :tag_based, :user, :badges_recipients_url
   
     def initialize(hash, request_path = '')
       dash = BadgeDash.new hash
@@ -20,6 +13,10 @@ module Rubyoverflow
       @tag_based = dash.tag_based
       @user = User.new dash.user if dash.user
       @badges_recipients_url = dash.badges_recipients_url
+    end
+    
+    def item_id
+      @badge_id
     end
     
     #Retrieves all the users that have received the badge

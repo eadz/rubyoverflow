@@ -25,7 +25,7 @@ module Rubyoverflow
       #
       #Maps to '/users{id}/reputation'
       def retrieve_by_user(id, parameters={})
-        id = convert_if_array(id)
+        id = convert_to_id_list(id)
         hash, url = request('/users/' + id.to_s + '/reputation', parameters)
         RepChanges.new hash, url
       end
