@@ -36,7 +36,7 @@ end
 def check_answer_set(answers, page_size = 1)
   check_paged_class(answers, page_size)
   answers.should respond_to(:answers)
-  #check_answer answers.answers.first
+  check_answer answers.answers.first
 end
 
 def check_api_site_set(api_sites, page_size = 1)
@@ -91,6 +91,27 @@ def check_question_set(questions, page_size = 1)
   questions.should respond_to(:questions)
   #check_question questions.questions.first
 end
+
+def check_answer(answer)
+  answer.should respond_to(:answer_id)
+  answer.should respond_to(:accepted)
+  answer.should respond_to(:answer_comments_url)
+  answer.should respond_to(:question_id)
+  answer.should respond_to(:locked_date)
+  answer.should respond_to(:owner)
+  answer.should respond_to(:creation_date)
+  answer.should respond_to(:last_edit_date)
+  answer.should respond_to(:last_activity_date)
+  answer.should respond_to(:up_vote_count)
+  answer.should respond_to(:down_vote_count)
+  answer.should respond_to(:view_count)
+  answer.should respond_to(:score)
+  answer.should respond_to(:community_owned)
+  answer.should respond_to(:title)
+  answer.should respond_to(:body)
+  answer.should respond_to(:comments)
+end
+
 
 def check_badge(badge)
   badge.should respond_to(:badge_id)

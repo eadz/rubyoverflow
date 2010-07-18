@@ -24,18 +24,8 @@ class TestUsers < Test::Unit::TestCase
       check_user_set users
     end
     
-    it 'retrieve_by_badge id' do
+    it 'retrieve_by_badge' do
       users = Users.retrieve_by_badge @badges.badges.first.badge_id, single_item_set
-      check_user_set users
-    end
-    
-    it 'retrieve_by_badge badge' do
-      users = Users.retrieve_by_badge @badges.badges.first, single_item_set
-      check_user_set users
-    end
-    
-    it 'retrieve_by_badge badges' do
-      users = Users.retrieve_by_badge @badges.badges[0..5], single_item_set
       check_user_set users
     end
     
